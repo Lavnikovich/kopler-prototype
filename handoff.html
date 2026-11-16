@@ -1,0 +1,385 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow"></head><body><title>Пакет разработки Kopler</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Wix+Madefor+Display:wght@500;600;700&family=Wix+Madefor+Text:wght@400;500;600&display=swap">
+<style>
+/* Раскладка: узкая колонка документа + липкое оглавление слева. Токены взяты из прототипа Kopler, тема одна светлая (решение по бренду). */
+:root{
+  color-scheme:light;
+  --bg:#F4F6FA; --surface:#FFFFFF; --surface-2:#F8FAFD;
+  --ink:#0C1A36; --ink-2:#46536F; --ink-3:#8791A8; --line:#DCE2EC; --line-2:#C7D0DF;
+  --blue:#2457B8; --blue-deep:#0F2753; --blue-tint:#E5EDFA; --blue-soft:#B8CCF0;
+  --teal:#0D7A6E; --teal-tint:#E0F1EE; --ok:#1E7350; --ok-tint:#E1F1E8;
+  --amber:#A86A10; --amber-tint:#FBF0DC; --violet:#5B47C8; --violet-tint:#ECE9FB;
+  --f-display:"Wix Madefor Display",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-text:"Wix Madefor Text",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:400 16.5px/1.6 var(--f-text);-webkit-font-smoothing:antialiased;margin:0}
+a{color:var(--blue)}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:4px}
+.page{max-width:1180px;margin:0 auto;padding-block:clamp(28px,5vw,64px) 96px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;grid-template-columns:220px minmax(0,1fr);gap:clamp(24px,4vw,56px)}
+.toc{position:sticky;top:24px;align-self:start;display:grid;gap:2px;font-size:14px}
+.toc b{font:500 11px/1.4 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin-bottom:8px}
+.toc a{color:var(--ink-2);text-decoration:none;padding:5px 10px;border-radius:8px}
+.toc a:hover{background:var(--surface);color:var(--ink)}
+main{min-width:0;display:grid;gap:clamp(44px,6vw,72px)}
+h1,h2,h3{font-family:var(--f-display);margin:0;text-wrap:balance;color:var(--ink)}
+h1{font-size:clamp(34px,4.6vw,56px);line-height:1.05;letter-spacing:-.03em;font-weight:600}
+h2{font-size:clamp(26px,3vw,36px);line-height:1.1;letter-spacing:-.025em;font-weight:600}
+h3{font-size:18.5px;line-height:1.3;font-weight:600;letter-spacing:-.01em}
+p{margin:0;max-width:68ch}
+section{display:grid;gap:18px;scroll-margin-top:24px}
+.eyebrow{font:500 11.5px/1.3 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--blue)}
+.lead{font-size:18px;color:var(--ink-2);max-width:62ch}
+.mute{color:var(--ink-3)}
+.kw{color:var(--blue-deep);font-weight:600}
+.mono{font-family:var(--f-mono);font-size:.92em}
+ul.l{margin:0;padding-left:20px;display:grid;gap:6px;max-width:70ch}
+ul.l li::marker{color:var(--blue)}
+
+/* Плашка «это прототип» */
+.proto{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;padding:20px 22px;border-radius:18px;border:1.5px dashed var(--amber);background:var(--amber-tint)}
+.proto .tag{font:600 11px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--amber);padding:8px 10px;border-radius:999px;align-self:start}
+.proto p{color:#5B3B07}
+.links{display:flex;flex-wrap:wrap;gap:10px}
+.links a{display:inline-flex;align-items:center;gap:8px;padding:11px 16px;border-radius:999px;background:var(--surface);border:1px solid var(--line);text-decoration:none;color:var(--ink);font-weight:600;font-size:14.5px}
+.links a span{font:400 12px/1 var(--f-mono);color:var(--ink-3)}
+
+/* Принципы */
+.princ{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.pr{display:grid;gap:6px;align-content:start;padding:18px 20px;border-radius:16px;background:var(--surface);border:1px solid var(--line)}
+.pr i{font:500 12px/1 var(--f-mono);font-style:normal;color:var(--blue)}
+.pr p{font-size:15px;color:var(--ink-2)}
+
+/* Мотив */
+.motif{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:center;padding:22px;border-radius:20px;background:var(--surface);border:1px solid var(--line)}
+.motif svg{width:100%;height:auto;max-width:100%}
+
+/* Таблицы */
+.tw{overflow-x:auto;border-radius:16px;border:1px solid var(--line);background:var(--surface)}
+table{width:100%;border-collapse:collapse;font-size:14.5px;min-width:720px}
+th{text-align:left;font:500 11px/1.3 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);padding:12px 14px;border-bottom:1px solid var(--line);background:var(--surface-2)}
+td{padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink-2)}
+tr:last-child td{border-bottom:0}
+td:first-child{font:500 12px/1.5 var(--f-mono);color:var(--ink-3);width:36px}
+td b{color:var(--ink);font-weight:600}
+.st{display:inline-block;font:500 10.5px/1 var(--f-mono);padding:4px 7px;border-radius:6px;white-space:nowrap}
+.st.ok{background:var(--ok-tint);color:var(--ok)}
+.st.demo{background:var(--amber-tint);color:var(--amber)}
+.st.q{background:var(--violet-tint);color:var(--violet)}
+
+/* Схемы-карточки */
+.schemes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.sc{display:grid;gap:8px;align-content:start;padding:18px 20px;border-radius:16px;background:var(--surface);border:1px solid var(--line)}
+.sc h3 small{display:block;font:500 11px/1.4 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-bottom:4px}
+.sc p{font-size:14.5px;color:var(--ink-2)}
+.sc .where{font:400 12px/1.4 var(--f-mono);color:var(--ink-3)}
+
+/* Цвета */
+.sw{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px}
+.c{display:grid;grid-template-rows:64px auto;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:var(--surface)}
+.c .chip{display:block}
+.c div{padding:10px 12px;display:grid;gap:2px}
+.c b{font:600 13.5px/1.2 var(--f-text)}
+.c span{font:400 12px/1.35 var(--f-mono);color:var(--ink-3)}
+.rule{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.who{display:grid;gap:6px;padding:14px;border-radius:14px;border:1px solid var(--line);background:var(--surface)}
+.who i{width:14px;height:14px;border-radius:50%}
+.who b{font-size:14.5px}
+.who span{font-size:13px;color:var(--ink-3)}
+
+/* Типографика */
+.type{display:grid;gap:10px}
+.ts{display:grid;grid-template-columns:200px minmax(0,1fr);gap:16px;align-items:baseline;padding:14px 18px;border-radius:14px;background:var(--surface);border:1px solid var(--line)}
+.ts span{font:400 12px/1.4 var(--f-mono);color:var(--ink-3)}
+
+/* Анимации */
+.anim{display:grid;gap:8px}
+
+/* Приоритеты */
+.prio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.pc{display:grid;gap:10px;align-content:start;padding:18px 20px;border-radius:16px;background:var(--surface);border:1px solid var(--line)}
+.pc .n{font:600 12px/1 var(--f-mono);color:#fff;background:var(--blue);padding:7px 10px;border-radius:999px;justify-self:start}
+.pc:nth-child(2) .n{background:var(--teal)}
+.pc:nth-child(3) .n{background:var(--ink-3)}
+.pc ul{margin:0;padding-left:18px;display:grid;gap:5px;font-size:14.5px;color:var(--ink-2)}
+
+footer{font-size:13px;color:var(--ink-3)}
+
+@media (max-width:900px){.page{grid-template-columns:1fr}.toc{position:static;grid-template-columns:repeat(2,minmax(0,1fr))}.toc b{grid-column:1/-1}.princ,.schemes,.prio,.motif{grid-template-columns:1fr}.rule{grid-template-columns:repeat(2,minmax(0,1fr))}.ts{grid-template-columns:1fr;gap:4px}}
+@media (max-width:420px){.rule{grid-template-columns:1fr}.proto{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+
+<div class="page">
+  <nav class="toc" aria-label="Содержание">
+    <b>Содержание</b>
+    <a href="#status">Статус</a>
+    <a href="#idea">Концепт</a>
+    <a href="#principles">Принципы</a>
+    <a href="#structure">Структура</a>
+    <a href="#schemes">Схемы</a>
+    <a href="#colors">Цвета</a>
+    <a href="#type">Шрифты и сетка</a>
+    <a href="#motion">Анимации</a>
+    <a href="#adaptive">Адаптив</a>
+    <a href="#open">Не утверждено</a>
+    <a href="#priority">Приоритеты</a>
+    <a href="#tech">Как устроен прототип</a>
+  </nav>
+
+  <main>
+    <header style="display:grid;gap:18px">
+      <span class="eyebrow">Сайт Kopler, версия прототипа 0.5.1, 17.11.2026</span>
+      <h1>Пакет для разработки</h1>
+      <p class="lead">Что за сайт, как он устроен по смыслу, на каких схемах держится и по каким правилам работают цвет, шрифт и движение. Документ про логику и подход. Точные тексты и цифры будут позже.</p>
+    </header>
+
+    <section id="status">
+      <div class="proto">
+        <span class="tag">Прототип</span>
+        <div style="display:grid;gap:10px">
+          <p><b>Это интерактивный прототип, а не готовый макет и не продакшн-код.</b> Он нужен, чтобы показать структуру, логику блоков, схемы и характер анимаций.</p>
+          <p>Тексты черновые и будут переписаны. Все цифры демонстрационные: курсы, комиссия, суммы, сроки, имена. Часть функций ещё не подтверждена продуктом, список в разделе «Не утверждено». Код прототипа можно открыть и посмотреть тайминги и поведение, но переносить его как есть не нужно.</p>
+        </div>
+      </div>
+      <div class="links">
+        <a href="https://lavnikovich.github.io/kopler-prototype/?v=51" target="_blank" rel="noopener">Открыть прототип <span>github.io</span></a>
+      </div>
+      <p class="mute" style="font-size:14px">Сайт из 2 страниц: «Компаниям» и «Исполнителям», переключаются в шапке. Если открылась старая версия, обновите страницу без кэша (Cmd+Shift+R).</p>
+    </section>
+
+    <section id="idea">
+      <span class="eyebrow">Концепт</span>
+      <h2>Одна линия, которая расходится на многие</h2>
+      <div class="motif">
+        <svg viewBox="0 0 420 200" role="img" aria-label="Схема-мотив: компания соединена одной линией с kopler, от kopler линии расходятся к 5 исполнителям">
+          <rect x="14" y="78" width="96" height="44" rx="12" fill="#FFFFFF" stroke="#2457B8" stroke-width="2"/>
+          <text x="62" y="105" text-anchor="middle" font-family="Wix Madefor Text, sans-serif" font-size="13" font-weight="600" fill="#0C1A36">Компания</text>
+          <path d="M110 100 H176" stroke="#2457B8" stroke-width="3" stroke-linecap="round" fill="none"/>
+          <rect x="176" y="72" width="68" height="56" rx="18" fill="#0F2753"/>
+          <text x="210" y="105" text-anchor="middle" font-family="Wix Madefor Display, sans-serif" font-size="14" font-weight="700" fill="#FFFFFF">kopler</text>
+          <g fill="none" stroke="#B8CCF0" stroke-width="4" stroke-linecap="round" stroke-dasharray="0.1 9">
+            <path d="M244 100 C300 100 300 24 352 24"/><path d="M244 100 C300 100 300 62 352 62"/><path d="M244 100 H352"/><path d="M244 100 C300 100 300 138 352 138"/><path d="M244 100 C300 100 300 176 352 176"/>
+          </g>
+          <g fill="#E1F1E8" stroke="#1E7350" stroke-width="1.6"><circle cx="366" cy="24" r="12"/><circle cx="366" cy="62" r="12"/><circle cx="366" cy="100" r="12"/><circle cx="366" cy="138" r="12"/><circle cx="366" cy="176" r="12"/></g>
+          <circle cx="150" cy="100" r="5.5" fill="#2457B8"/>
+        </svg>
+        <div style="display:grid;gap:10px">
+          <p><span class="kw">Kopler</span> работает как оптический разветвитель: у компании 1 договор и 1 пополнение, а Kopler разводит работу, деньги и документы по всем исполнителям в любых странах.</p>
+          <p>Этот образ проходит через весь сайт. Почти каждая схема строится из 3 частей: заказчик, kopler посередине, исполнитель или исполнители. На странице исполнителя схема зеркальная: заказчики из разных стран сходятся через kopler к одному человеку.</p>
+        </div>
+      </div>
+      <p>Главное обещание для компании: «Вы ставите задачу исполнителю, Kopler сделает всё остальное». Для исполнителя: получать оплату от заказчиков из любой страны и выводить деньги туда, куда удобно.</p>
+    </section>
+
+    <section id="principles">
+      <span class="eyebrow">Принципы</span>
+      <h2>По каким правилам собран сайт</h2>
+      <div class="princ">
+        <div class="pr"><i>01</i><h3>Объясняем схемой, а не текстом</h3><p>Каждый блок отвечает на 1 вопрос и держится на 1 схеме или интерактиве. Текст короткий, мини-интерфейсы только иллюстрируют схему.</p></div>
+        <div class="pr"><i>02</i><h3>Kopler всегда посередине</h3><p>Ни одна схема не показывает, что заказчик платит исполнителю напрямую. Деньги и документы всегда проходят через kopler. Исключение одно: режим «Напрямую» в блоке «1 договор», он нужен для сравнения.</p></div>
+        <div class="pr"><i>03</i><h3>Цвет показывает, кто действует</h3><p>Синий — компания, зелёный — исполнитель, янтарный — процесс идёт, тёмно-синий — Kopler. Цвет несёт смысл, декоративных цветов в схемах нет.</p></div>
+        <div class="pr"><i>04</i><h3>Движение означает действие</h3><p>Бегущая точка — это деньги, летящий лист — это документ, вспышка — это событие. Анимация запускается, только когда блок на экране, и отключается при «уменьшить движение».</p></div>
+        <div class="pr"><i>05</i><h3>Сначала проблема клиента</h3><p>Функцию показываем через ситуацию, которую она решает. Поэтому на обеих страницах есть блок «Знакомая ситуация» с выходом «Моей ситуации здесь нет».</p></div>
+        <div class="pr"><i>06</i><h3>Легко и с воздухом</h3><p>Светлая холодная база, крупная типографика, лёгкие карточки, много пустого места. Тема одна, светлая. Тёмно-синие панели работают как контрастные паузы, их немного.</p></div>
+        <div class="pr"><i>07</i><h3>Не обещаем лишнего</h3><p>Неподтверждённые условия помечаются как условные или заглушки. Пары «зелёный рост / красный падение» на курсах нет. Названия юрлиц Kopler на сайте не показываем.</p></div>
+        <div class="pr"><i>08</i><h3>Можно попробовать до регистрации</h3><p>Демо-кабинет с входом по почте, без загрузки документов, есть у обеих аудиторий. Это вторая главная кнопка после регистрации.</p></div>
+      </div>
+    </section>
+
+    <section id="structure">
+      <span class="eyebrow">Структура</span>
+      <h2>Разделы и их смысл</h2>
+      <p>Порядок блоков продуман: от «что это» к «как работает», затем «почему выгодно и безопасно», в конце доверие и действие. Статус в последней колонке показывает, насколько готовы данные блока.</p>
+      <h3 style="margin-top:6px">Страница «Компаниям»</h3>
+      <div class="tw"><table>
+        <thead><tr><th>#</th><th>Блок</th><th>Зачем он нужен</th><th>Механика</th><th>Данные</th></tr></thead>
+        <tbody>
+          <tr><td>01</td><td><b>Шапка</b></td><td>Навигация по разделам и переход к исполнителям</td><td>Меню-якоря, переключатель «Компаниям / Исполнителям» с переезжающей половиной, кнопка «Подключить компанию»</td><td><span class="st ok">готово</span></td></tr>
+          <tr><td>02</td><td><b>Первый экран</b></td><td>За 5 секунд понять, что это и что Kopler берёт на себя</td><td>Заголовок, обещание и 4 пункта. Схема-разветвитель: компания, kopler, исполнители. Под схемой 2 кнопки: подключить и демо</td><td><span class="st demo">имена и суммы демо</span></td></tr>
+          <tr><td>03</td><td><b>Преимущества</b></td><td>5 главных причин по убыванию важности</td><td>Бенто из 5 карточек разного цвета, каждая ведёт к своему блоку ниже</td><td><span class="st ok">готово</span></td></tr>
+          <tr><td>04</td><td><b>Знакомая ситуация</b></td><td>Клиент узнаёт свою боль</td><td>Слева 5 ситуаций, справа решение с цветом ситуации. Последний пункт открывает форму менеджеру</td><td><span class="st ok">готово</span></td></tr>
+          <tr><td>05</td><td><b>Как это работает</b></td><td>Путь от регистрации до акта за 5 шагов</td><td>Сцена с 3 участниками, по шагам движутся предметы. Автопереключение с полосой прогресса, номер шага, легенда цветов</td><td><span class="st ok">логика готова</span></td></tr>
+          <tr><td>06</td><td><b>1 договор вместо множества документов</b></td><td>Простота модели: компания заключает договор только с Kopler</td><td>Тёмная панель. Деньги идут к исполнителям, акты возвращаются компании и исполнителям. Переключатель «Напрямую / Через Kopler» со счётчиками</td><td><span class="st demo">40 исполнителей — пример</span></td></tr>
+          <tr><td>07</td><td><b>Документы приходят сами</b></td><td>Что получит бухгалтерия и когда</td><td>3 события слева, в папку справа влетают листы: оферта, счёт, акт</td><td><span class="st q">состав документов</span></td></tr>
+          <tr><td>08</td><td><b>Модель под вас</b></td><td>Гибкость: 3 юрлица под разные услуги и страны</td><td>Тёмная секция. 4 вопроса, справа карточка юрлица, с которым заключается договор, к ней сходятся линии от ответов</td><td><span class="st q">«Другая страна», оплата по факту</span></td></tr>
+          <tr><td>09</td><td><b>Курсы</b></td><td>Рыночный курс без скрытых наценок, курс фиксируется</td><td>Табло курса выбранной валюты, форма задания с фиксацией курса после создания, блок «Индивидуальный курс»</td><td><span class="st demo">курсы демо</span></td></tr>
+          <tr><td>10</td><td><b>Тарифы</b></td><td>Ориентир по стоимости до разговора с менеджером</td><td>Калькулятор из 3 параметров, предварительная оценка отделена от окончательных условий, 3 шага до тарифа</td><td><span class="st demo">формула демо</span></td></tr>
+          <tr><td>11</td><td><b>Безопасность</b></td><td>Почему платформе можно доверить деньги и документы</td><td>Цепочка из 6 проверок с бегущей подсветкой, под ней 3 карточки</td><td><span class="st ok">готово</span></td></tr>
+          <tr><td>12</td><td><b>Помощь</b></td><td>Рядом всегда человек и ассистент</td><td>Карточка менеджера и чат ассистента, который печатает вопрос, отправляет и отвечает</td><td><span class="st demo">имя менеджера, срок ассистента</span></td></tr>
+          <tr><td>13</td><td><b>Доверие</b></td><td>Внешние подтверждения</td><td>Резидентство ПВТ с сертификатом, проверка юристами, логотипы клиентов</td><td><span class="st q">файлы, логотипы, юрфирма</span></td></tr>
+          <tr><td>14</td><td><b>Миссия</b></td><td>Зачем существует Kopler, ближе к концу страницы</td><td>Canvas: частицы плавают, в центре появляется kopler, пары «заказчик — исполнитель» соединяются через него</td><td><span class="st ok">готово</span></td></tr>
+          <tr><td>15</td><td><b>Вопросы</b></td><td>Снять возражения</td><td>Заголовок закреплён слева, справа аккордеон, открыт 1 вопрос</td><td><span class="st q">ответ про НДС у юриста</span></td></tr>
+          <tr><td>16</td><td><b>Финал</b></td><td>Действие</td><td>Тёмная плашка: демо-кабинет, подключение, пример кабинета</td><td><span class="st ok">готово</span></td></tr>
+        </tbody>
+      </table></div>
+
+      <h3 style="margin-top:10px">Страница «Исполнителям»</h3>
+      <div class="tw"><table>
+        <thead><tr><th>#</th><th>Блок</th><th>Зачем он нужен</th><th>Механика</th><th>Данные</th></tr></thead>
+        <tbody>
+          <tr><td>01</td><td><b>Первый экран</b></td><td>Оплата от заказчиков из любой страны</td><td>Схема наоборот: заказчики сходятся через kopler к вам, баланс растёт. Регистрация, демо, вход по приглашению. 3 преимущества</td><td><span class="st ok">готово</span></td></tr>
+          <tr><td>02</td><td><b>Знакомая ситуация</b></td><td>Релокация, иностранные заказчики, документы для визы</td><td>Как у компаний. В решении пара «заказчик — kopler — вы», точка идёт по очереди. Есть «Моей ситуации здесь нет»</td><td><span class="st ok">готово</span></td></tr>
+          <tr><td>03</td><td><b>Валюта выплаты</b></td><td>Главное преимущество: выбор валюты и направления выплаты</td><td>Баланс в рублях, 5 вариантов валюты, справа маршрут: курс, расходы, срок, сумма</td><td><span class="st demo">все значения условные</span></td></tr>
+          <tr><td>04</td><td><b>Как работает маршрут выплаты</b></td><td>Условия известны до начала работы</td><td>5 шагов и дополнительный маршрут, карточка маршрута заполняется по шагам до «Согласован»</td><td><span class="st q">процесс согласования</span></td></tr>
+          <tr><td>05</td><td><b>Когда придут деньги</b></td><td>Прозрачные сроки</td><td>Трекер из 5 статусов, точки загораются по очереди</td><td><span class="st ok">готово</span></td></tr>
+          <tr><td>06</td><td><b>Экономика</b></td><td>Никаких неожиданных расходов</td><td>Комиссию платформы платит заказчик, отдельно расходы на платёж, пример расчёта</td><td><span class="st q">тарифы подтвердить</span></td></tr>
+          <tr><td>07</td><td><b>Вывод и баланс</b></td><td>Куда вывести и что ещё можно с балансом</td><td>5 способов вывода с примером реквизитов, «В разработке»: оплата своих подписок</td><td><span class="st q">способы и сервисы</span></td></tr>
+          <tr><td>08</td><td><b>Работа командой</b></td><td>Делить оплату с соисполнителями</td><td>Заказчик видит только вас, команда в рамке «Видно только вам», толщина линии равна доле</td><td><span class="st q">попадёт ли в релиз</span></td></tr>
+          <tr><td>09</td><td><b>Документы</b></td><td>Легальный доход и подтверждение для визы и банка</td><td>Папка, в которую влетают договор, акт, подтверждение дохода</td><td><span class="st q">состав документов</span></td></tr>
+          <tr><td>10</td><td><b>Заказчики</b></td><td>На платформе есть реальные клиенты</td><td>Ряд логотипов</td><td><span class="st q">логотипы</span></td></tr>
+          <tr><td>11</td><td><b>Вопросы и финал</b></td><td>Возражения и действие</td><td>Аккордеон, демо-кабинет исполнителя</td><td><span class="st ok">готово</span></td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <section id="schemes">
+      <span class="eyebrow">Схемы</span>
+      <h2>Каталог схем</h2>
+      <p>Все схемы сделаны из 4 одинаковых деталей: узел-участник, плашка kopler, линия и импульс. Линии рисуются в SVG по реальным координатам элементов и пересчитываются при изменении ширины.</p>
+      <div class="schemes">
+        <div class="sc"><h3><small>Первый экран, компании</small>Разветвитель</h3><p>Импульс уходит от компании в kopler, рамка компании пульсирует, импульс делится на ветви. У каждого исполнителя загорается галочка и всплывает сумма в его валюте. Цикл примерно 3,9 с.</p></div>
+        <div class="sc"><h3><small>Как это работает</small>Сцена 5 шагов</h3><p>3 участника на одной линии, между ними двигаются предметы: чек-лист, деньги, счёт, карточка задания со статусом, приглашение, работа, кнопки «Принять» и «На доработку», акты. Плашка всегда стоит над своим участником. Шаги идут сами и переключаются кликом.</p></div>
+        <div class="sc"><h3><small>1 договор</small>Двусторонняя схема</h3><p>Деньги (точки) идут вперёд к исполнителям, акты (листы) идут обратно компании и каждому исполнителю. В режиме «Напрямую» у каждой связи свой платёж и свой акт, счётчики показывают 40, 40, 40 против 1, 1, 0.</p></div>
+        <div class="sc"><h3><small>Документы</small>Лоток</h3><p>Слева событие подсвечивается, справа в папку влетает соответствующий лист и растёт счётчик. Цвет полосы на листе — тип документа.</p></div>
+        <div class="sc"><h3><small>Модель под вас</small>Конструктор</h3><p>Выбранные ответы стоят чипами слева, от них линии сходятся к карточке юрлица. У каждого юрлица свой цвет, при 2 договорах линии разного цвета. Ниже валюта, исполнители и полоса оплаты: сколько при создании задания, сколько после.</p></div>
+        <div class="sc"><h3><small>Курсы</small>Фиксация курса</h3><p>Форма задания: валюта, сумма, живой курс. После «Создать задание» поле курса получает замок и рамку, курс перестаёт меняться, рядом время фиксации. Выбор валюты общий для формы и табло.</p></div>
+        <div class="sc"><h3><small>Миссия</small>Соединение через kopler</h3><p>Крупные приглушённые частицы плавают без линий. В центре появляется плашка kopler. Синяя точка тянет линию к kopler, от него линия идёт к зелёной, по линии бежит импульс. Соединения учащаются, пока все не связаны, потом цикл повторяется с новыми парами.</p></div>
+        <div class="sc"><h3><small>Исполнитель</small>Сходящаяся схема и пары</h3><p>Зеркало разветвителя: заказчики сходятся через kopler к одному исполнителю. В ситуациях пара «заказчик — kopler — вы»: точка сначала идёт к kopler, плашка вспыхивает, потом точка идёт к исполнителю.</p></div>
+        <div class="sc"><h3><small>Исполнитель</small>Маршрут выплаты</h3><p>Баланс слева, валюты в центре, маршрут справа. Выбранная валюта соединена с балансом и маршрутом сплошной линией, остальные точечной. Отдельно карточка маршрута, которая заполняется по шагам.</p></div>
+        <div class="sc"><h3><small>Исполнитель</small>Сплит команды</h3><p>Заказчик, вы, команда в пунктирной рамке. Толщина линии к участнику равна его доле, переключатель долей стоит под схемой, суммы пересчитываются.</p></div>
+      </div>
+    </section>
+
+    <section id="colors">
+      <span class="eyebrow">Цвета</span>
+      <h2>Палитра и правила цвета</h2>
+      <p>Основа — глубокий синий «Кобальт» и холодный почти белый фон. Функциональные цвета живут только в статусах, схемах и маркерах, в декоре их нет.</p>
+      <div class="sw">
+        <div class="c"><span class="chip" style="background:#2457B8"></span><div><b>Синий, основной</b><span>#2457B8 кнопки, компания, ствол схем</span></div></div>
+        <div class="c"><span class="chip" style="background:#0F2753"></span><div><b>Синий глубокий</b><span>#0F2753 kopler, тёмные секции</span></div></div>
+        <div class="c"><span class="chip" style="background:#E5EDFA"></span><div><b>Синий светлый</b><span>#E5EDFA плашки, подложки иконок</span></div></div>
+        <div class="c"><span class="chip" style="background:#B8CCF0"></span><div><b>Синий мягкий</b><span>#B8CCF0 точечные линии</span></div></div>
+        <div class="c"><span class="chip" style="background:#F4F6FA"></span><div><b>Фон</b><span>#F4F6FA</span></div></div>
+        <div class="c"><span class="chip" style="background:#0C1A36"></span><div><b>Текст</b><span>#0C1A36, вторичный #46536F, #8791A8</span></div></div>
+        <div class="c"><span class="chip" style="background:#1E7350"></span><div><b>Зелёный</b><span>#1E7350 исполнитель, «готово»</span></div></div>
+        <div class="c"><span class="chip" style="background:#0D7A6E"></span><div><b>Бирюзовый</b><span>#0D7A6E документы, страница исполнителя</span></div></div>
+        <div class="c"><span class="chip" style="background:#A86A10"></span><div><b>Янтарный</b><span>#A86A10 «в процессе», заглушки</span></div></div>
+        <div class="c"><span class="chip" style="background:#5B47C8"></span><div><b>Фиолетовый</b><span>#5B47C8 валюты, второе юрлицо</span></div></div>
+      </div>
+      <h3 style="margin-top:8px">Цвет по участнику, во всех схемах</h3>
+      <div class="rule">
+        <div class="who"><i style="background:#2457B8"></i><b>Компания</b><span>всё, что делает или получает заказчик</span></div>
+        <div class="who"><i style="background:#1E7350"></i><b>Исполнитель</b><span>его действия, оплата, его акт</span></div>
+        <div class="who"><i style="background:#A86A10"></i><b>В процессе</b><span>резерв, «в работе»</span></div>
+        <div class="who"><i style="background:#0F2753"></i><b>Kopler</b><span>платформа и её действия</span></div>
+      </div>
+      <h3 style="margin-top:8px">Цвета юрлиц в «Модели под вас»</h3>
+      <div class="rule">
+        <div class="who"><i style="background:#5B47C8"></i><b>Кыргызстан, IT</b><span>фиолетовый</span></div>
+        <div class="who"><i style="background:#2457B8"></i><b>Кыргызстан, digital</b><span>синий</span></div>
+        <div class="who"><i style="background:#1E7350"></i><b>Беларусь</b><span>зелёный</span></div>
+        <div class="who" style="border-style:dashed"><b>Названия юрлиц</b><span>на сайте не показываем</span></div>
+      </div>
+    </section>
+
+    <section id="type">
+      <span class="eyebrow">Шрифты и сетка</span>
+      <h2>Типографика, сетка, детали</h2>
+      <div class="type">
+        <div class="ts"><span>Wix Madefor Display, 600<br>заголовки</span><div style="font:600 clamp(26px,3.4vw,40px)/1.05 var(--f-display);letter-spacing:-.03em">Kopler сделает всё остальное</div></div>
+        <div class="ts"><span>Wix Madefor Text, 400–600<br>текст и интерфейс</span><div style="font:400 17px/1.55 var(--f-text)">Договоры, проверка исполнителей, выплаты и акты проходят на платформе.</div></div>
+        <div class="ts"><span>JetBrains Mono, 500<br>цифры, метки, коды</span><div style="font:500 13px/1.4 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)">1 USD = 92,40 RUB, акт K-0412</div></div>
+      </div>
+      <ul class="l">
+        <li>Заголовки крупные, трекинг от −3 до −3,5%. Двухтональные: тезис тёмным, пояснение серым на новой строке. Точек в конце крупных заголовков нет.</li>
+        <li>Слово Kopler в заголовках выделяется тёмно-синим, серым оно не бывает.</li>
+        <li>Размеры в прототипе: h1 38–72 px, h2 30–52 px, текст 17 px с межстрочным 1,55, метки 11–12 px капсом.</li>
+        <li>Все числа цифрами, суммы и курсы моноширинным с выравниванием цифр.</li>
+        <li>Контейнер 1240 px, боковой отступ 16–40 px, секции 72–128 px по вертикали, фон секций чередуется: светлый и белая полоса.</li>
+        <li>Скругления: 10, 16 и 24 px, пилюли 999 px. Карточки с тонкой рамкой и мягкой тенью, рамку и тень даём только тому, что должно читаться отдельным объектом.</li>
+        <li>Линии схем: основной ствол 3 px сплошной, ветви точечным пунктиром (штрих 0,1, шаг 9, толщина 4, круглые концы).</li>
+        <li>Кнопки: основная синяя с градиентом и тенью, вторая белая с рамкой. «Открыть демо-кабинет» рядом с основной — с синей обводкой, чтобы не терялась.</li>
+      </ul>
+    </section>
+
+    <section id="motion">
+      <span class="eyebrow">Анимации</span>
+      <h2>Правила движения</h2>
+      <ul class="l">
+        <li>Анимация блока стартует, когда блок попал на экран, и останавливается, когда ушёл. В прототипе это IntersectionObserver.</li>
+        <li>При системной настройке «уменьшить движение» всё показывается в конечном состоянии без движения.</li>
+        <li>Кривая по умолчанию <span class="mono">cubic-bezier(.65,0,.35,1)</span>, импульс по линии 0,8–1 с, перемещение предметов в сцене около 1 с.</li>
+        <li>Шаги «Как это работает» длятся 5,6–7,8 с, 3-й шаг самый длинный: в нём 6 состояний задания.</li>
+        <li>Повторы мягкие: цикл разветвителя около 4 с, двусторонней схемы около 4 с, пары в ситуациях 3,2 с, миссии около 15 с.</li>
+        <li>Микровзаимодействия: переезжающая половина переключателя 0,5 с, раскрытие вопросов 0,45 с, кнопка «Создать задание» мягко пульсирует, пока её не нажали.</li>
+        <li>Курс на табло обновляется раз в 2,6 с короткой подсветкой цифры. На сайте значения приходят из API, частоту обновления определит бэкенд.</li>
+      </ul>
+    </section>
+
+    <section id="adaptive">
+      <span class="eyebrow">Адаптив</span>
+      <h2>Как ведёт себя на узких экранах</h2>
+      <ul class="l">
+        <li>До 1240 px меню в шапке скрыто. В прототипе нет бургер-меню, на сайте оно нужно. До 1320 px скрыта ссылка «Войти», чтобы меню поместилось.</li>
+        <li>До 860 px разветвитель на первом экране становится вертикальным: компания, под ней kopler, ниже столбик исполнителей.</li>
+        <li>До 980 px двухколоночные блоки складываются в одну колонку, шаги «Как это работает» встают в строку над сценой.</li>
+        <li>До 560 px сцена 5 шагов становится квадратной, плашки раздвигаются по вертикали, чтобы не перекрываться. Пары в ситуациях идут вертикально.</li>
+        <li>Горизонтальной прокрутки страницы нет ни на одной ширине, проверено на 375 и 1280 px.</li>
+      </ul>
+    </section>
+
+    <section id="open">
+      <span class="eyebrow">Не утверждено</span>
+      <h2>Что в прототипе заглушка или ждёт решения</h2>
+      <div class="tw"><table>
+        <thead><tr><th>#</th><th>Что</th><th>Как сейчас в прототипе</th><th>Кто решает</th></tr></thead>
+        <tbody>
+          <tr><td>01</td><td><b>Комиссия</b></td><td>«Не более 7%», процент считает демо-формула</td><td>продукт, тарифная сетка</td></tr>
+          <tr><td>02</td><td><b>Курсы</b></td><td>Демо-цифры, «не зарабатываем на разнице курсов»</td><td>финансы, API курса</td></tr>
+          <tr><td>03</td><td><b>Условия исполнителя</b></td><td>0% на выплаты на российский счёт, международные по маршруту, сроки условные</td><td>продукт, финансы</td></tr>
+          <tr><td>04</td><td><b>Способы вывода</b></td><td>Карта, счёт ИП или компании, личный счёт, криптокошелёк, платёжные сервисы</td><td>продукт</td></tr>
+          <tr><td>05</td><td><b>Состав документов</b></td><td>Оферта, счёт, акт; в ситуациях упоминается счёт-задание</td><td>юрист, продукт</td></tr>
+          <tr><td>06</td><td><b>Оплата по факту</b></td><td>Есть в модели, расходится с резервом при создании задания</td><td>продукт</td></tr>
+          <tr><td>07</td><td><b>Проверка исполнителя</b></td><td>Где-то «до 1-го задания», где-то «до 1-й выплаты»</td><td>продукт</td></tr>
+          <tr><td>08</td><td><b>«Другая страна»</b></td><td>Какой договор получает компания не из России, Беларуси и Кыргызстана</td><td>юрист</td></tr>
+          <tr><td>09</td><td><b>НДС</b></td><td>Ответ в FAQ помечен «проверить у юриста»</td><td>юрист</td></tr>
+          <tr><td>10</td><td><b>Сплит, подписки, ассистент</b></td><td>Показаны, сроки запуска неизвестны</td><td>продукт</td></tr>
+          <tr><td>11</td><td><b>Доверие</b></td><td>Нет файлов сертификатов ПВТ, логотипов клиентов, названия юрфирмы</td><td>команда Kopler</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <section id="priority">
+      <span class="eyebrow">Приоритеты</span>
+      <h2>В каком порядке делать</h2>
+      <div class="prio">
+        <div class="pc"><span class="n">Первый релиз</span><ul><li>Каркас обеих страниц, шапка с переключателем, бургер-меню</li><li>Первый экран со схемой-разветвителем</li><li>5 шагов</li><li>1 договор, документы</li><li>Модель под вас</li><li>Безопасность, вопросы, финал с демо</li><li>Исполнитель: первый экран, ситуации, валюта выплаты, вывод</li></ul></div>
+        <div class="pc"><span class="n">Второй этап</span><ul><li>Курсы с реальным API и фиксацией</li><li>Калькулятор на тарифной сетке</li><li>Миссия на canvas</li><li>Чат ассистента</li><li>Маршрут выплаты, экономика исполнителя</li><li>Блог</li></ul></div>
+        <div class="pc"><span class="n">После решений</span><ul><li>Сплит команды</li><li>Оплата подписок с баланса</li><li>Криптокошелёк и платёжные сервисы</li><li>Доверие: сертификаты, логотипы, юрфирма</li><li>Оплата по факту в модели</li></ul></div>
+      </div>
+    </section>
+
+    <section id="tech">
+      <span class="eyebrow">Как устроен прототип</span>
+      <h2>Что можно взять из кода, а что нет</h2>
+      <ul class="l">
+        <li>Прототип — 1 HTML-файл без фреймворков: стили, разметка и скрипт внутри. Шрифты с Google Fonts.</li>
+        <li>Схемы — SVG поверх HTML-элементов. Координаты линий берутся из положения элементов на странице и пересчитываются при ресайзе. Импульсы двигаются по путям через requestAnimationFrame.</li>
+        <li>Сцена «5 шагов» — элементы с абсолютным позиционированием в процентах, анимация через CSS-переходы и таймеры. Миссия — canvas.</li>
+        <li>Тайминги, порядок событий и состояния можно смотреть прямо в скрипте прототипа: каждая анимация лежит отдельным блоком с понятным заголовком.</li>
+        <li>Брать как референс: порядок событий в схемах, тайминги, состояния элементов, правила цвета, адаптив.</li>
+        <li>Не брать как есть: демо-данные в константах скрипта (на сайте из API или CMS), инлайн-стили, тексты, служебные пометки.</li>
+        <li>Доступность: у вкладок и переключателей есть роли и состояния aria, фокус виден, «уменьшить движение» поддерживается. На сайте это нужно сохранить.</li>
+      </ul>
+    </section>
+
+    <footer>Kopler, пакет для разработки к прототипу сайта v0.5.1. Тексты и цифры прототипа черновые.</footer>
+  </main>
+</div>
+</body></html>

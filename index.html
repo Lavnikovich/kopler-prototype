@@ -1105,6 +1105,8 @@ footer{padding-bottom:72px}
 .rt-bal b{white-space:nowrap;font-size:clamp(30px,3.4vw,48px)}
 .net{height:clamp(260px,30vw,380px)}
 
+/* v0.5.2 */
+#tfRate{font-size:clamp(15px,1.5vw,19px)}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}html{scroll-behavior:auto}}
 </style>
 
@@ -1988,7 +1990,7 @@ footer{padding-bottom:72px}
     $$('.toggle button').forEach(function(b){ b.setAttribute('aria-pressed', String(b.dataset.mode === m)); });
     var svg = $('#mapSvg'); svg.classList.add('fade');
     setTimeout(function(){ layoutMap(); svg.classList.remove('fade'); clearTimeout(mapT); mapStep(); }, reduce ? 0 : 300);
-    $$('[data-c]').forEach(function(el){ animCount(el, COUNTS[m][el.dataset.c]); });
+    $$('#mapWrap .cnt [data-c]').forEach(function(el){ animCount(el, COUNTS[m][el.dataset.c]); });
   }
   $$('.toggle button').forEach(function(b){ b.addEventListener('click', function(){ setMode(b.dataset.mode); }); });
 

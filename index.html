@@ -1081,14 +1081,13 @@ footer{padding-bottom:72px}
     <a class="btn btn-primary btn-sm hdr-cta" href="#final">Подключить компанию</a>
   </div>
 </header>
-<button class="notes-btn" id="notesBtn" type="button" aria-pressed="false">Пометки для разработки</button>
+<button class="notes-btn" id="notesBtn" hidden style="display:none" type="button" aria-pressed="false">Пометки для разработки</button>
 <div class="toast" id="toast" role="status"></div>
 
 <!-- ===================== КОМПАНИЯМ ===================== -->
 <main id="view-biz">
 <section class="hero" id="top">
   <div class="wrap">
-    <div class="devnote"><b>Первый экран.</b> Заголовок и вторая строка финальные. После двоеточия 4 пункта: что Kopler берёт на себя, оформлены списком без рамок, чтобы не спорить с кнопками. Кнопки перенесены под схему и разведены: слева «Подключить компанию», справа демо-кабинет с подписью. Переключатель «Компаниям / Исполнителям» снова в шапке, активная половина переезжает с анимацией. Списание у компании убрано: импульс просто уходит в kopler и расходится исполнителям.</div>
     <div class="hero-copy">
       <h1 class="h1-main">Платформа для работы с внештатными исполнителями <span class="plate">по всему миру</span></h1>
       <p class="h1-sub">Вы ставите задачу исполнителю, <span class="kw">Kopler</span> сделает всё остальное:</p>
@@ -1122,7 +1121,6 @@ footer{padding-bottom:72px}
 
 <section class="sec usp-sec" id="usp">
   <div class="wrap">
-    <div class="devnote"><b>Преимущества.</b> 5 карточек по важности, разные фоны, чтобы уйти от монотонного синего с белым: 1) любые исполнители по всему миру (тёмно-синяя, крупная), 2) 1 договор вместо множества, 3) 4 валюты и фиксация курса (знаки валют), 4) гибкая модель и персональный менеджер, 5) документы без ручной работы. Пункт «Задания и приёмка» убран. Каждая карточка ведёт к своему блоку ниже.</div>
     <div class="bento">
       <a class="bx b1" href="#model">
         <span class="bx-n">01</span>
@@ -1161,7 +1159,6 @@ footer{padding-bottom:72px}
 
 <section class="sec band" id="cases">
   <div class="wrap">
-    <div class="devnote"><b>Знакомая ситуация?</b> 5 ситуаций и выход «Моей ситуации здесь нет» с формой менеджеру. Кнопка «Я исполнитель» убрана, переход к исполнителям только через закреплённый переключатель. У каждой ситуации свой цветовой акцент и иконка, чтобы блок не был сплошь синим. <b>Проверить:</b> в 3-й ситуации пакет назван «договор, счёт-задание, акт», а в блоке «Документы» по правкам документы — оферта, счёт, акт без заданий.</div>
     <div class="sec-head"><h2>Знакомая ситуация?</h2><p class="lead">Выберите свою, и мы покажем, как с ней справляется Kopler.</p></div>
     <div class="cases">
       <div class="case-list" role="tablist" aria-label="Ситуации">
@@ -1179,7 +1176,6 @@ footer{padding-bottom:72px}
 
 <section class="sec band" id="how">
   <div class="wrap">
-    <div class="devnote"><b>5 шагов.</b> Логика и порядок анимации прежние. Номер шага в углу сцены: «Шаг» и круглый маркер с цифрой. Плашки стоят ровно по центру над своим участником (компания 18%, kopler 50%, исполнитель 82% ширины сцены). Цвет показывает, кто действует: синий — вы, зелёный — исполнитель, янтарный — в процессе, тёмно-синий — Kopler. Легенда под сценой. Статус карточки задания тоже окрашен по участнику.</div>
     <div class="how">
       <div class="how-side">
         <span class="eyebrow">Как это работает</span>
@@ -1225,7 +1221,6 @@ footer{padding-bottom:72px}
 
 <section class="sec" id="map">
   <div class="wrap">
-    <div class="devnote"><b>1 договор.</b> Схема двусторонняя: деньги (белые точки) идут от компании в kopler и расходятся исполнителям, затем акты (бирюзовые листы) идут из kopler обратно компании и каждому исполнителю. Плашка компании полупрозрачная, kopler стоит ближе к компании. Режим «Напрямую»: по каждой связи свой платёж и свой акт обратно. Число 40 осталось только в счётчиках как пример.</div>
     <div class="sec-head"><span class="eyebrow">Модель работы</span><h2>1 договор <span class="mute br">вместо множества документов</span></h2><p class="lead">С исполнителями договоры заключает <b class="kw">Kopler</b>. Деньги идут от вас к исполнителям, акты приходят и вам, и исполнителю.</p></div>
     <div class="map-wrap" id="mapWrap" data-mode="kopler">
       <div class="map" id="mapBox" data-mode="kopler">
@@ -1250,7 +1245,6 @@ footer{padding-bottom:72px}
 
 <section class="sec" id="docs">
   <div class="wrap">
-    <div class="devnote"><b>Документы.</b> 3 документа: оферта (синий), счёт на пополнение (янтарный), акт заказчику и исполнителю (бирюзовый). Задания к договору нет. Анимация прежняя: на каждом событии в папку влетает лист, счётчик растёт, цикл повторяется.</div>
     <div class="sec-head"><span class="eyebrow">Документы</span><h2>Документы приходят сами <span class="mute br">без запросов и напоминаний</span></h2></div>
     <div class="docs">
       <div class="dtl" id="dtl">
@@ -1271,7 +1265,6 @@ footer{padding-bottom:72px}
 
 <section class="sec dark on-dark" id="model">
   <div class="wrap">
-    <div class="devnote" style="background:transparent;color:var(--on-dark-2);border-color:var(--blue-glow)"><b style="color:#9DBBF2">Модель под вас.</b> Главное в результате — с каким юрлицом заключается договор: крупная карточка в синей рамке, к ней сходятся линии от выбранных параметров. «И то и другое» даёт 2 договора с 2 юрлицами в Кыргызстане. Ниже валюта заданий, исполнители и схема оплаты; строка про документы убрана. Для «Другой страны» вместо непонятного «Подбор» — пояснение, что вариант договора подтверждает менеджер (уточнить у продукта). Названия юрлиц не показываем. <b style="color:#F3C77A">Проверить:</b> оплата по факту выполнения и резерв при создании задания.</div>
     <div class="claim">
       <span class="eyebrow" style="margin-bottom:14px">Модель под вас</span>
       <span class="l1">Мы не подгоняем вас под свою модель</span>
@@ -1295,7 +1288,6 @@ footer{padding-bottom:72px}
 
 <section class="sec" id="rates">
   <div class="wrap">
-    <div class="devnote"><b>Курсы.</b> «Рыночный курс без скрытых наценок». Курс виден при создании задания и фиксируется сразу после создания. Слева табло: курс выбранной валюты к 3 остальным, без пустых значений. Справа форма задания: валюта (RUB, BYN, KGS, USD), курс, кнопка «Создать задание», после неё «Курс зафиксирован». Выбор валюты общий для табло и формы. Ниже крупный акцент на индивидуальном курсе. На сайте табло подключается к API курса Kopler, в прототипе демо-цифры. Формулировку «не зарабатывает на разнице курсов» подтвердить с Пашей.</div>
     <div class="sec-head"><span class="eyebrow">Курсы</span><h2>Рыночный курс <span class="mute br">без скрытых наценок</span></h2><p class="lead"><b class="kw">Kopler</b> не зарабатывает на разнице курсов. Курс виден, когда вы создаёте задание, и фиксируется сразу после создания.</p></div>
     <div class="rates">
       <div class="card cmp">
@@ -1329,7 +1321,6 @@ footer{padding-bottom:72px}
 
 <section class="sec band" id="price">
   <div class="wrap">
-    <div class="devnote"><b>Тарифы.</b> «Комиссия не более 7%» — предварительный ориентир. Комиссия зависит от модели работы, способ оплаты из калькулятора убран. 3 параметра: кому платите, ваш налоговый режим, сколько планируете платить в месяц. Процент считается по демо-формуле, её заменить на тарифную сетку. Под калькулятором 3 шага до окончательных условий, соединены пунктиром со стрелками.</div>
     <div class="sec-head"><span class="eyebrow">Тарифы</span><h2>Сколько это стоит <span class="mute br">комиссия не более 7%</span></h2><p class="lead">Комиссия зависит от модели работы. Калькулятор покажет предварительную оценку, финальный тариф закрепляем в ваших индивидуальных условиях.</p></div>
     <div class="price">
       <div class="card pq">
@@ -1361,7 +1352,6 @@ footer{padding-bottom:72px}
 
 <section class="sec" id="security">
   <div class="wrap">
-    <div class="devnote"><b>Безопасность.</b> Цепочка проверок с бегущей подсветкой без изменений. Под ней 3 лёгких пункта без рамок, в порядке: проверка до выплаты, возврат денег, оплата по правам доступа.</div>
     <div class="sec-head"><span class="eyebrow">Безопасность</span><h2>Деньги двигаются <span class="mute br">только после проверок</span></h2><p class="lead">Проверки, резерв и права доступа защищают каждый платёж и каждый документ.</p></div>
     <div class="chain">
       <div class="chk"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V8l8-4 8 4v12"/><path d="M9 20v-6h6v6"/></svg></span>Компания проверена<small>до 1 рабочего дня</small></div>
@@ -1381,7 +1371,6 @@ footer{padding-bottom:72px}
 
 <section class="sec band" id="support">
   <div class="wrap">
-    <div class="devnote"><b>Помощь.</b> Менеджер и ассистент Kopler. Ассистент снова живой: вопрос печатается в поле ввода, отправляется, ассистент «печатает» и отвечает, потом следующий вопрос. Анимация идёт, пока блок на экране. Имя менеджера, контакты и срок запуска ассистента — заглушки.</div>
     <div class="sec-head"><span class="eyebrow">Помощь</span><h2>Всегда есть кому помочь</h2></div>
     <div class="sup two">
       <div class="card">
@@ -1403,7 +1392,6 @@ footer{padding-bottom:72px}
 
 <section class="sec" id="trust">
   <div class="wrap">
-    <div class="devnote"><b>Доверие.</b> Статус коротко: «Kopler — резидент Парка высоких технологий». У сертификата 1 кнопка «Посмотреть» (нужны файлы сертификатов). Кыргызстан оставлен в том же коротком формате, если нужен только Беларусь — убрать 2-ю плашку. Проверка юристами и логотипы клиентов без изменений.</div>
     <div class="trust">
       <div class="sec-head" style="margin-bottom:0"><span class="eyebrow">Доверие</span><h2>Kopler можно проверить</h2></div>
       <div class="badges b3">
@@ -1419,7 +1407,6 @@ footer{padding-bottom:72px}
 
 <section class="sec mission" id="mission">
   <div class="wrap">
-    <div class="devnote"><b>Миссия.</b> Точки с самого начала стоят в форме букв KOPLER, линии между ними серые. Затем линии прорисовываются слева направо и проявляют буквы цветом: синие — заказчики, бирюзовые — исполнители. Держится около 3 секунд, гаснет до серого и повторяется.</div>
     <div class="mission-in">
       <span class="eyebrow">Наша миссия</span>
       <q>Помочь <em class="c">заказчикам</em> и <em class="p">исполнителям</em> найти друг друга в любой точке мира и взять на себя всё, что этому мешает</q>
@@ -1431,7 +1418,6 @@ footer{padding-bottom:72px}
 
 <section class="sec band" id="faq">
   <div class="wrap">
-    <div class="devnote"><b>Вопросы.</b> Состав по правкам: подключение, договор, документы, НДС, исполнители, проверка компании, плюс демо-кабинет и возврат. Вопрос про хранение данных убран.</div>
     <div class="faq">
       <div class="faq-side"><span class="eyebrow">Вопросы</span><h2>Что спрашивают <span class="mute">чаще всего</span></h2><p class="lead">Не нашли ответ? Менеджер ответит в рабочее время.</p><div><a class="btn btn-ghost btn-sm" href="#support">Задать вопрос</a></div></div>
       <div class="faq-list">
@@ -1475,7 +1461,6 @@ footer{padding-bottom:72px}
 <main id="view-pro" hidden>
 <section class="hero" id="pro-top">
   <div class="wrap">
-    <div class="devnote"><b>Исполнитель, первый экран.</b> Обещание про хранение в долларах убрано: «Выводите их туда, куда вам удобно». Схема прежняя, баланс растёт в рублях. В шапке свои разделы. Под экраном 3 преимущества; в «Деньги под вашим контролем» сказано, что баланс в долларах — выбор, а не обязанность.</div>
     <div class="pro-hero">
       <div class="hero-copy">
         <span class="eyebrow">Для исполнителей</span>
@@ -1505,7 +1490,6 @@ footer{padding-bottom:72px}
 
 <section class="sec band" id="pro-cases">
   <div class="wrap">
-    <div class="devnote"><b>Знакомая ситуация, исполнитель.</b> Механика как у компаний: слева 3 проблемы, справа карточка с решением Kopler. В карточке пара «заказчик — вы» (или «договор — акты») с бегущей точкой и 3 пункта решения. Простые схемы из v0.3 убраны.</div>
     <div class="sec-head"><h2>Знакомая ситуация?</h2><p class="lead">Выберите свою, и мы покажем, как с ней справляется Kopler.</p></div>
     <div class="cases">
       <div class="case-list" role="tablist" aria-label="Ситуации исполнителя" id="pcList">
@@ -1520,7 +1504,6 @@ footer{padding-bottom:72px}
 
 <section class="sec" id="route-sec">
   <div class="wrap">
-    <div class="devnote"><b>Валюта выплаты — главное преимущество страницы.</b> Пример: заказчик оплатил 92 400 ₽, деньги на балансе Kopler. Исполнитель выбирает валюту выплаты: EUR, RUB, USD, GBP или другую. Справа валюта, курс, расходы на платёж, срок и сумма к получению. Для «Другой валюты» — маршрут и условия согласуются заранее. Все значения условные. Синий акцент вместо зелёного.</div>
     <div class="sec-head"><span class="eyebrow">Валюта выплаты</span><h2>Получайте в удобной валюте <span class="mute br">и выводите туда, куда нужно</span></h2><p class="lead">Неважно, в какой валюте заказчик оплатил задание. Вы выбираете, в какой валюте получить выплату, и знаете условия заранее. Держать баланс в долларах не обязательно.</p></div>
     <div class="card route" id="route">
       <svg class="wires-abs" id="routeSvg" aria-hidden="true"></svg>
@@ -1539,7 +1522,6 @@ footer{padding-bottom:72px}
 
 <section class="sec band" id="route-how">
   <div class="wrap">
-    <div class="devnote"><b>Как работает маршрут выплаты.</b> Отдельный блок, чтобы не смешивать с выбором валюты. Слева 5 шагов и дополнительный маршрут, справа карточка маршрута: на каждом шаге заполняется своё поле, в конце статус «Согласован». Шаги идут сами, пока блок на экране, и переключаются кликом. Значения в карточке условные.</div>
     <div class="rh">
       <div class="rh-side">
         <span class="eyebrow">Маршрут выплаты</span>
@@ -1570,7 +1552,6 @@ footer{padding-bottom:72px}
 
 <section class="sec band" id="pro-track" style="padding-block:clamp(56px,8vw,96px)">
   <div class="wrap">
-    <div class="devnote"><b>Когда придут деньги.</b> Трекер статусов задания: точки загораются по очереди, под каждой понятный срок.</div>
     <div class="sec-head"><span class="eyebrow">Просто и прозрачно</span><h2>Всегда видно, <span class="mute">когда и за что придут деньги</span></h2></div>
     <div class="track5" id="track5"><span class="fill" id="t5fill"></span>
       <div class="t5"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5"/></svg></i><b>Деньги зарезервированы</b><small>до начала работы</small></div>
@@ -1586,7 +1567,6 @@ footer{padding-bottom:72px}
 
 <section class="sec" id="pro-econ">
   <div class="wrap">
-    <div class="devnote"><b>Экономика.</b> Комиссию платформы платит заказчик, для исполнителя её нет, поэтому строки «0% комиссии» больше нет. Отдельно расходы на проведение платежа: 0% на российский банковский счёт, международные — по маршруту. Значения подтвердить по тарифной модели.</div>
     <div class="econ">
       <div style="display:grid;gap:18px;align-content:start">
         <span class="eyebrow">Экономика</span>
@@ -1606,7 +1586,6 @@ footer{padding-bottom:72px}
 
 <section class="sec band" id="ways">
   <div class="wrap">
-    <div class="devnote"><b>Вывод и баланс.</b> Блок прежний, акценты синие вместо зелёных. «Банковский счёт» и «Личный счёт» разведены: счёт ИП или компании и личный счёт физлица в банке. Проверить с продуктом, что это действительно 2 разных способа, и какие платёжные сервисы поддерживаются. Криптокошелёк — согласовать с Пашей.</div>
     <div class="sec-head"><span class="eyebrow">Вывод и баланс</span><h2>Куда вывести <span class="mute br">и что ещё можно сделать с балансом</span></h2></div>
     <div class="ways2">
       <div class="wlist" role="tablist" aria-label="Способы вывода" id="wlist">
@@ -1627,7 +1606,6 @@ footer{padding-bottom:72px}
 
 <section class="sec" id="team">
   <div class="wrap">
-    <div class="devnote"><b>Работа командой.</b> Слева механика списком, справа схема: заказчик видит только вас, команда в пунктирной рамке «Видно только вам». Переключатель распределения стоит под схемой, линии меняют толщину, суммы пересчитываются. Сплит может не попасть в декабрьский релиз, проверить перед запуском.</div>
     <div class="team">
       <div style="display:grid;gap:18px">
         <span class="eyebrow">Работа командой</span>
@@ -1659,7 +1637,6 @@ footer{padding-bottom:72px}
 
 <section class="sec band" id="pro-docs">
   <div class="wrap">
-    <div class="devnote"><b>Документы и легальный доход.</b> Для исполнителя документы — способ подтвердить доход для визы, банка и миграционных процедур. Справа папка, в которую по очереди влетают договор, акт и подтверждение дохода. Состав документов («подтверждение дохода») сверить с продуктом.</div>
     <div class="pdocs">
       <div style="display:grid;gap:18px;align-content:start">
         <span class="eyebrow">Документы</span>
@@ -1679,7 +1656,6 @@ footer{padding-bottom:72px}
 
 <section class="sec" id="pro-clients">
   <div class="wrap">
-    <div class="devnote"><b>С кем мы работаем.</b> Тот же ряд логотипов, что у компаний, с подачей для исполнителя: на платформе есть реальные заказчики.</div>
     <div class="sec-head"><span class="eyebrow">Заказчики</span><h2>Заказчики, которые работают <span class="mute">через <span class="kw">Kopler</span></span></h2></div>
     <div class="logos"><div class="logo-ph">Логотип</div><div class="logo-ph">Логотип</div><div class="logo-ph">Логотип</div><div class="logo-ph">Логотип</div><div class="logo-ph">Логотип</div><div class="logo-ph">Логотип</div></div>
   </div>
@@ -2220,7 +2196,7 @@ footer{padding-bottom:72px}
     {t:'Банковская карта', d:'Российские и зарубежные карты.', f:[['Номер карты','•••• •••• •••• 4417'],['Валюта','RUB']]},
     {t:'Счёт ИП или компании', d:'Для исполнителей с ИП или своей компанией.', f:[['Получатель','ИП, ваше имя'],['Счёт','40802 •••• •••• 1123']]},
     {t:'Личный счёт в банке', d:'Счёт физлица в банке вашей страны.', f:[['IBAN','DE89 •••• •••• 3000'],['Валюта','EUR']]},
-    {t:'Криптокошелёк', d:'Для исполнителей за пределами России.', f:[['Сеть','TRC-20'],['Адрес','TQ7f •••• 9xLm']], tbd:'согласовать с Пашей'},
+    {t:'Криптокошелёк', d:'Для исполнителей за пределами России.', f:[['Сеть','TRC-20'],['Адрес','TQ7f •••• 9xLm']], tbd:'уточняется'},
     {t:'Платёжные сервисы', d:'Международные сервисы и платформы, которые принимают выплаты.', f:[['Сервис','выбираете из списка'],['Аккаунт','ваш логин в сервисе']], tbd:'названия уточнить'}
   ];
   function renderWay(i){

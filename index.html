@@ -1092,6 +1092,19 @@ footer{padding-bottom:72px}
 .pair-cap{font:500 12px/1.3 var(--f-mono);color:var(--ink-3);text-align:center;margin-top:-6px}
 @media (max-width:560px){.pair{grid-template-columns:1fr;justify-items:center;gap:6px}.pa{width:100%}.pa-l{display:block;width:4px;height:20px;background:radial-gradient(circle,var(--blue-soft) 1.6px,transparent 2px) 50% 0/4px 8px repeat-y}.pa-l::after{display:none}}
 
+
+/* ===================== v0.5.1 ===================== */
+/* Пара «заказчик — kopler — исполнитель»: сначала точка идёт к kopler, потом от kopler к исполнителю */
+.pair .pa-l::after{animation:pvA 3.2s var(--ease) infinite;background:var(--blue);box-shadow:0 0 10px var(--blue)}
+.pair .pa-l.d2::after{animation:pvB 3.2s var(--ease) infinite;animation-delay:0s;background:var(--cc,var(--teal));box-shadow:0 0 10px var(--cc,var(--teal))}
+.pair .pa-k{animation:pvK 3.2s ease-in-out infinite}
+@keyframes pvA{0%{left:0;opacity:0}6%{opacity:1}38%{left:100%;opacity:1}42%,100%{left:100%;opacity:0}}
+@keyframes pvB{0%,46%{left:0;opacity:0}52%{opacity:1}84%{left:100%;opacity:1}88%,100%{left:100%;opacity:0}}
+@keyframes pvK{0%,36%,56%,100%{box-shadow:0 0 0 5px var(--blue-tint),0 12px 22px -12px rgba(15,39,83,.8)}42%{box-shadow:0 0 0 9px var(--blue-tint),0 0 22px rgba(58,115,222,.7)}}
+/* Баланс в одну строку */
+.rt-bal b{white-space:nowrap;font-size:clamp(30px,3.4vw,48px)}
+.net{height:clamp(260px,30vw,380px)}
+
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}html{scroll-behavior:auto}}
 </style>
 
@@ -1979,57 +1992,68 @@ footer{padding-bottom:72px}
   }
   $$('.toggle button').forEach(function(b){ b.addEventListener('click', function(){ setMode(b.dataset.mode); }); });
 
-  /* ---------- Миссия: частицы плавают и собираются в KOPLER ---------- */
-  var cv = $('#net'), cx = cv.getContext('2d'), nodes = [], edges = [], netOn = false, dpr = Math.min(2, window.devicePixelRatio || 1), W = 0, Hh = 0, gstep = 10, cyc0 = 0;
-  var T_FREE = 2600, T_GATHER = 4300, T_HOLD = 3200, T_REL = 2400, CYC = T_FREE + T_GATHER + T_HOLD + T_REL + 900;
+  /* ---------- Миссия: частицы соединяются через kopler ---------- */
+  var cv = $('#net'), cx = cv.getContext('2d'), nodes = [], pairs = [], netOn = false, netSeen = false, dpr = Math.min(2, window.devicePixelRatio || 1), W = 0, Hh = 0, t0 = 0, hubF = -1e9, cycEnd = 0, firstCyc = true;
+  var T_HUB = 1400, T_CONN = 2500, HOLD = 4500, FADE = 1400;
   var CM = [169,191,232], CF = [36,87,184], PM = [160,210,201], PF = [13,122,110];
   function ease3(k){ return k < .5 ? 4*k*k*k : 1 - Math.pow(-2*k+2, 3)/2; }
   function c01(k){ return k < 0 ? 0 : k > 1 ? 1 : k; }
   function mixCol(a, b, k){ return 'rgb(' + Math.round(a[0]+(b[0]-a[0])*k) + ',' + Math.round(a[1]+(b[1]-a[1])*k) + ',' + Math.round(a[2]+(b[2]-a[2])*k) + ')'; }
-  function sampleWord(){
-    var w = Math.max(1, Math.floor(W)), h = Math.max(1, Math.floor(Hh)), oc = document.createElement('canvas'); oc.width = w; oc.height = h;
-    var o = oc.getContext('2d'), fs = Math.min(h*.84, w/4.3);
-    o.font = '700 ' + fs + 'px "Wix Madefor Display", system-ui, sans-serif'; o.textAlign = 'center'; o.textBaseline = 'middle'; o.fillText('KOPLER', w/2, h/2);
-    var d = o.getImageData(0, 0, w, h).data, pts = [], st = Math.max(5, Math.round(fs/15));
-    for(;;){ pts = []; for(var y = st/2; y < h; y += st) for(var x = st/2; x < w; x += st){ if(d[((y|0)*w + (x|0))*4 + 3] > 140) pts.push({x:x, y:y}); } if(pts.length <= 440 || st > 40) break; st++; }
-    gstep = st; return pts;
+  function shuf(a){ for(var i = a.length-1; i > 0; i--){ var j = Math.floor(Math.random()*(i+1)), t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+  function hubBox(){ var w = Math.max(96, Math.min(150, W*.12)), h = w*.46; return {w:w, h:h, x:W/2, y:Hh/2}; }
+  function schedule(start){
+    var cs = shuf(nodes.filter(function(n){ return n.t === 'c'; })), ps = shuf(nodes.filter(function(n){ return n.t === 'p'; }));
+    var n = Math.min(cs.length, ps.length), at = start, iv = 1000; pairs = [];
+    for(var i = 0; i < n; i++){ pairs.push({a:cs[i], b:ps[i], s:at}); at += iv; iv = Math.max(110, iv*.8); }
+    cycEnd = at + 1200 + HOLD;
   }
   function initNet(){
     W = cv.clientWidth; Hh = cv.clientHeight; if(!W) return;
     cv.width = W*dpr; cv.height = Hh*dpr; cx.setTransform(dpr,0,0,dpr,0,0);
-    var pts = sampleWord();
-    for(var i = pts.length-1; i > 0; i--){ var j = Math.floor(Math.random()*(i+1)), t = pts[i]; pts[i] = pts[j]; pts[j] = t; }
-    nodes = pts.map(function(p, i){ return {x:Math.random()*W, y:8+Math.random()*(Hh-16), a:Math.random()*6.28, sp:.16+Math.random()*.22, ph:Math.random()*6.28, tx:p.x, ty:p.y, t:(i % 5 < 2) ? 'c' : 'p', dl:Math.random()*1500, m:0, dx:0, dy:0}; });
-    edges = []; var th2 = Math.pow(gstep*1.5, 2);
-    for(var a=0;a<nodes.length;a++) for(var b=a+1;b<nodes.length;b++){ var na = nodes[a], nb = nodes[b], dx = na.tx-nb.tx, dy = na.ty-nb.ty; if(dx*dx+dy*dy < th2) edges.push({a:na, b:nb, p:na.t === 'p' && nb.t === 'p'}); }
-    cyc0 = performance.now(); drawNet(cyc0, true);
+    var n = Math.round(Math.max(30, Math.min(110, W*Hh/5000))); n -= n % 2;
+    nodes = [];
+    for(var i = 0; i < n; i++) nodes.push({x:8+Math.random()*(W-16), y:8+Math.random()*(Hh-16), a:Math.random()*6.28, sp:.16+Math.random()*.24, ph:Math.random()*6.28, t:i % 2 ? 'p' : 'c', lit:0});
+    t0 = performance.now(); firstCyc = true; schedule(T_CONN); drawNet(t0, true);
   }
-  function mixOf(n, t){
-    if(reduce) return 1;
-    var g0 = T_FREE, g1 = g0 + T_GATHER, h1 = g1 + T_HOLD, r1 = h1 + T_REL;
-    if(t < g0) return 0;
-    if(t < g1) return ease3(c01((t - g0 - n.dl) / (T_GATHER - 1500)));
-    if(t < h1) return 1;
-    if(t < r1) return 1 - ease3(c01((t - h1 - n.dl*.6) / (T_REL - 900)));
-    return 0;
+  function rr(x, y, w, h, r){ cx.beginPath(); cx.moveTo(x+r, y); cx.arcTo(x+w, y, x+w, y+h, r); cx.arcTo(x+w, y+h, x, y+h, r); cx.arcTo(x, y+h, x, y, r); cx.arcTo(x, y, x+w, y, r); cx.closePath(); }
+  function drawHub(h, k, flash){
+    cx.save(); cx.globalAlpha = k; var sc = .8 + .2*k; cx.translate(h.x, h.y); cx.scale(sc, sc);
+    cx.strokeStyle = 'rgba(184,204,240,' + (flash ? .95 : .6) + ')'; cx.lineWidth = flash ? 2 : 1; rr(-h.w/2-7, -h.h/2-7, h.w+14, h.h+14, h.h*.38+7); cx.stroke();
+    cx.shadowColor = 'rgba(36,87,184,.5)'; cx.shadowBlur = flash ? 30 : 18;
+    var g = cx.createLinearGradient(-h.w/2, -h.h/2, h.w/2, h.h/2); g.addColorStop(0, '#2C62C6'); g.addColorStop(1, '#0F2753');
+    cx.fillStyle = g; rr(-h.w/2, -h.h/2, h.w, h.h, h.h*.38); cx.fill(); cx.shadowBlur = 0;
+    cx.fillStyle = '#fff'; cx.font = '700 ' + Math.round(h.h*.44) + 'px "Wix Madefor Display", system-ui, sans-serif'; cx.textAlign = 'center'; cx.textBaseline = 'middle'; cx.fillText('kopler', 0, 1);
+    cx.restore();
   }
   function drawNet(now, once){
     if(!W) return;
-    var t = (now - cyc0) % CYC;
-    cx.clearRect(0,0,W,Hh);
+    var t = now - t0;
+    if(!reduce && t > cycEnd + FADE){ t0 = now - T_CONN + 400; firstCyc = false; schedule(T_CONN); t = now - t0; }
+    cx.clearRect(0, 0, W, Hh);
     nodes.forEach(function(n){
       if(!reduce && !once){ n.a += Math.sin(now/1700 + n.ph)*.012; n.x += Math.cos(n.a)*n.sp; n.y += Math.sin(n.a)*n.sp*.7;
         if(n.x < 6){ n.x = 6; n.a = Math.PI - n.a; } if(n.x > W-6){ n.x = W-6; n.a = Math.PI - n.a; } if(n.y < 6){ n.y = 6; n.a = -n.a; } if(n.y > Hh-6){ n.y = Hh-6; n.a = -n.a; } }
-      n.m = mixOf(n, t); n.dx = n.x + (n.tx - n.x)*n.m; n.dy = n.y + (n.ty - n.y)*n.m;
+      n.lit = 0;
     });
-    cx.lineWidth = 1.6;
-    edges.forEach(function(e){ var k = c01((Math.min(e.a.m, e.b.m) - .6)/.4); if(k <= 0) return;
-      cx.strokeStyle = e.p ? 'rgba(13,122,110,'+(.85*k).toFixed(3)+')' : 'rgba(36,87,184,'+(.85*k).toFixed(3)+')';
-      cx.beginPath(); cx.moveTo(e.a.dx, e.a.dy); cx.lineTo(e.a.dx + (e.b.dx - e.a.dx)*k, e.a.dy + (e.b.dy - e.a.dy)*k); cx.stroke(); });
-    nodes.forEach(function(n){ cx.fillStyle = n.t === 'c' ? mixCol(CM, CF, n.m) : mixCol(PM, PF, n.m); cx.beginPath(); cx.arc(n.dx, n.dy, 5.4 - 2.3*n.m, 0, 7); cx.fill(); });
+    var hb = hubBox(), hubK = reduce ? 1 : (firstCyc ? ease3(c01((t - T_HUB)/700)) : 1);
+    var fade = reduce ? 1 : (t > cycEnd ? 1 - c01((t - cycEnd)/FADE) : 1);
+    pairs.forEach(function(p){
+      var e = reduce ? 1e9 : t - p.s; if(e <= 0) return;
+      var k1 = ease3(c01(e/600)), k2 = ease3(c01((e - 600)/600)), fresh = 1 - c01((e - 1200)/1000), al = (.22 + .6*fresh) * fade;
+      var a = p.a, b = p.b;
+      cx.lineWidth = 1 + 1.2*fresh;
+      cx.strokeStyle = 'rgba(36,87,184,' + al.toFixed(3) + ')'; cx.beginPath(); cx.moveTo(a.x, a.y); cx.lineTo(a.x + (hb.x - a.x)*k1, a.y + (hb.y - a.y)*k1); cx.stroke();
+      if(k2 > 0){ cx.strokeStyle = 'rgba(13,122,110,' + al.toFixed(3) + ')'; cx.beginPath(); cx.moveTo(hb.x, hb.y); cx.lineTo(hb.x + (b.x - hb.x)*k2, hb.y + (b.y - hb.y)*k2); cx.stroke(); }
+      if(!reduce && e < 1200){ var px = k1 < 1 ? a.x + (hb.x - a.x)*k1 : hb.x + (b.x - hb.x)*k2, py = k1 < 1 ? a.y + (hb.y - a.y)*k1 : hb.y + (b.y - hb.y)*k2;
+        cx.fillStyle = k1 < 1 ? '#2457B8' : '#0D7A6E'; cx.beginPath(); cx.arc(px, py, 3.6, 0, 7); cx.fill(); }
+      if(e > 560 && e < 760) hubF = now;
+      a.lit = Math.max(a.lit, c01(e/300) * fade); b.lit = Math.max(b.lit, k2 * fade);
+    });
+    nodes.forEach(function(n){ cx.fillStyle = n.t === 'c' ? mixCol(CM, CF, n.lit) : mixCol(PM, PF, n.lit); cx.beginPath(); cx.arc(n.x, n.y, 5.2, 0, 7); cx.fill(); });
+    if(hubK > 0) drawHub(hb, hubK, now - hubF < 350);
     if(!once && netOn && !reduce) requestAnimationFrame(function(tt){ drawNet(tt); });
   }
-  visible(cv, function(v){ var was = netOn; netOn = v; if(v && !was){ if(!W) initNet(); cyc0 = performance.now(); requestAnimationFrame(function(tt){ drawNet(tt); }); } }, .2);
+  visible(cv, function(v){ var was = netOn; netOn = v; if(v && !was){ if(!W) initNet(); if(!netSeen){ netSeen = true; t0 = performance.now(); firstCyc = true; schedule(T_CONN); } requestAnimationFrame(function(tt){ drawNet(tt); }); } }, .2);
 
   /* ---------- Документы: папки компании и исполнителя ---------- */
   function trayLoop(tray, devs, counter){

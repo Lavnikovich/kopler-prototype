@@ -1107,6 +1107,67 @@ footer{padding-bottom:72px}
 
 /* v0.5.2 */
 #tfRate{font-size:clamp(15px,1.5vw,19px)}
+
+/* ===================== v0.6 ===================== */
+.hv-switch{display:inline-flex;flex-wrap:wrap;align-items:center;gap:4px;justify-self:start;padding:5px;margin-bottom:clamp(14px,2vw,22px);border:1px dashed #D9B36A;background:#FFF8EA;border-radius:14px}
+.hv-switch span{padding:0 10px;font:500 11px/1.2 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--amber)}
+.hv-switch button{font:600 14px/1 var(--f-text);border:0;background:transparent;color:var(--ink-2);padding:9px 12px;border-radius:10px;cursor:pointer;transition:background .2s,color .2s,box-shadow .2s}
+.hv-switch button:hover{color:var(--ink)}
+.hv-switch button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px rgba(12,26,54,.14)}
+.hero-copy[data-hv]{display:none}
+.hero-copy[data-hv].on{display:grid;animation:hvIn .45s var(--ease) both}
+@keyframes hvIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.hero-copy[data-hv] .eyebrow{color:var(--blue)}
+.hv-sub{font-size:clamp(19px,1.9vw,25px)!important;font-weight:500!important;color:var(--ink-2)!important;max-width:52ch!important;line-height:1.35!important}
+.hero-copy[data-hv] .plate{display:inline;-webkit-box-decoration-break:clone;box-decoration-break:clone;padding:0 .12em .04em}
+.hero-copy[data-hv] .h1-main{font-size:clamp(36px,4.6vw,64px);line-height:1.13;max-width:20ch}
+.trumps{list-style:none;margin:6px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.trumps li{display:flex}
+.trumps a{flex:1;display:grid;align-content:start;gap:10px;padding:18px 18px 20px;border-radius:20px;background:var(--surface);border:1px solid var(--line);box-shadow:0 1px 2px rgba(12,26,54,.04),0 12px 26px -18px rgba(12,26,54,.25);color:var(--ink);text-decoration:none;transition:transform .25s var(--ease),box-shadow .25s,border-color .25s}
+.trumps a:hover{transform:translateY(-3px);border-color:var(--blue-soft);box-shadow:0 1px 2px rgba(12,26,54,.04),0 18px 32px -18px rgba(15,39,83,.35)}
+.trumps b{font:700 clamp(17px,1.35vw,19px)/1.2 var(--f-display);letter-spacing:-.01em}
+.trumps p{margin:0;font-size:14.5px;line-height:1.42;color:var(--ink-2)}
+.trumps .t-rate a{background:linear-gradient(150deg,#2C62C6,var(--blue-deep));border-color:transparent;color:#fff}
+.trumps .t-rate p{color:var(--on-dark-2)}
+.trumps .t-rate .tk-ic{background:rgba(255,255,255,.14);color:#fff}
+.trumps .t-org .tk-ic{background:var(--violet-tint);color:var(--violet)}
+.trumps .t-mod .tk-ic{background:var(--teal-tint);color:var(--teal)}
+.trumps .t-mgr .tk-ic{background:var(--ok-tint);color:var(--ok)}
+.t-fx{display:inline-flex;align-items:baseline;gap:6px;justify-self:start;margin-top:2px;padding:7px 12px;border-radius:12px;background:rgba(255,255,255,.12);font:700 20px/1 var(--f-display)}
+.t-fx i{font:500 11px/1 var(--f-mono);font-style:normal;color:var(--on-dark-2)}
+.t-fx em{font:500 11px/1 var(--f-mono);font-style:normal;color:#9FE3D6;margin-left:4px}
+.t-dots{display:flex;flex-wrap:wrap;gap:6px}
+.t-dots i{font:500 11.5px/1 var(--f-mono);font-style:normal;padding:5px 8px 5px 18px;border-radius:999px;background:var(--surface-2);border:1px solid var(--line);position:relative}
+.t-dots i::before{content:"";position:absolute;left:7px;top:50%;width:6px;height:6px;margin-top:-3px;border-radius:50%;background:var(--d)}
+.pvt-row{display:flex;flex-wrap:wrap;gap:10px}
+.pvt{display:inline-flex;align-items:center;gap:12px;padding:7px 16px 7px 7px;border-radius:999px;background:var(--surface);border:1px solid var(--line);color:var(--ink);text-decoration:none;transition:border-color .2s}
+.pvt:hover{border-color:var(--blue-soft)}
+.pvt-s{width:38px;height:38px;flex:none;border-radius:50%;display:grid;place-items:center;border:2px solid var(--blue);color:var(--blue);font:600 10px/1 var(--f-mono)}
+.pvt b{display:block;font-size:14px;font-weight:600;line-height:1.25}
+.pvt small{display:block;font:500 11px/1.3 var(--f-mono);color:var(--blue);letter-spacing:.04em;text-transform:uppercase;margin-top:2px}
+.hero-copy[data-hv="b"] .takes li{font-size:15px}
+.vs{display:grid;gap:12px}
+.vs-head,.vs-row{display:grid;grid-template-columns:minmax(150px,.62fr) 1fr 1fr;gap:12px;align-items:stretch}
+.vs-head span{font:500 12px/1.2 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);padding:0 20px}
+.vs-head .k{color:var(--blue)}
+.vs-row h3{margin:0;align-self:center;font:700 clamp(17px,1.5vw,20px)/1.25 var(--f-display);letter-spacing:-.01em}
+.vs-row .them,.vs-row .us{border-radius:18px;padding:18px 20px;font-size:15.5px;line-height:1.45}
+.vs-row .them{border:1px dashed var(--line-2);color:var(--ink-2)}
+.vs-row .us{position:relative;background:var(--surface);border:1px solid var(--blue-soft);box-shadow:0 1px 2px rgba(12,26,54,.04),0 12px 26px -18px rgba(15,39,83,.3);padding-left:26px}
+.vs-row .us::before{content:"";position:absolute;left:11px;top:16px;bottom:16px;width:3px;border-radius:3px;background:var(--blue)}
+.vs-row [data-l]::after{display:none}
+.vs-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:clamp(24px,3vw,36px)}
+@media (max-width:1100px){.trumps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:760px){
+  .vs-head{display:none}
+  .vs-row{grid-template-columns:1fr;gap:8px;padding-bottom:14px}
+  .vs-row h3{margin-top:6px}
+  .vs-row [data-l]::before{content:attr(data-l);display:block;margin-bottom:6px;font:500 11px/1.2 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+  .vs-row .us[data-l]::before{position:static;width:auto;background:none;color:var(--blue)}
+  .vs-cta .btn{width:100%}
+}
+@media (max-width:560px){.trumps{grid-template-columns:1fr}.pvt{border-radius:16px}.hv-switch{display:flex}.hv-switch span{width:100%;padding:4px 8px}.hv-switch button{flex:1 1 auto;padding:9px 6px;font-size:13.5px}}
+
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}html{scroll-behavior:auto}}
 </style>
 
@@ -1114,7 +1175,7 @@ footer{padding-bottom:72px}
   <div class="hdr-in">
     <a class="logo" href="#top" aria-label="Kopler, на главную"><svg viewBox="0 0 26 20" aria-hidden="true"><path d="M1 10h9" stroke="#2457B8" stroke-width="3" stroke-linecap="round"/><path d="M10 10c5 0 6-7 14-7M10 10h14M10 10c5 0 6 7 14 7" fill="none" stroke="#2457B8" stroke-width="1.8" stroke-linecap="round"/></svg>kopler</a>
     <nav class="nav" aria-label="Разделы" id="navBiz">
-      <a href="#how">Как работает</a><a href="#docs">Документы</a><a href="#model">Модель</a><a href="#rates">Курсы</a><a href="#price">Тарифы</a><a href="#faq">Вопросы</a><a href="#blog" data-soon="Блог появится на сайте к запуску">Блог</a>
+      <a href="#usp">Отличия</a><a href="#model">Модель</a><a href="#rates">Курсы</a><a href="#how">Как работает</a><a href="#price">Тарифы</a><a href="#faq">Вопросы</a><a href="#blog" data-soon="Блог появится на сайте к запуску">Блог</a>
     </nav>
     <nav class="nav off" aria-label="Разделы для исполнителей" id="navPro"><a href="#pro-cases">Ситуации</a><a href="#route-sec">Валюта</a><a href="#route-how">Маршрут</a><a href="#pro-econ">Условия</a><a href="#ways">Вывод</a><a href="#pro-faq">Вопросы</a></nav>
     <span class="hdr-sp"></span>
@@ -1130,20 +1191,55 @@ footer{padding-bottom:72px}
 <main id="view-biz">
 <section class="hero" id="top">
   <div class="wrap">
-    <div class="hero-copy">
-      <h1 class="h1-main">Платформа для работы с внештатными исполнителями <span class="plate">по всему миру</span></h1>
-      <p class="h1-sub">Вы ставите задачу исполнителю, <span class="kw">Kopler</span> сделает всё остальное:</p>
-      <ul class="takes" aria-label="Что берёт на себя Kopler">
-        <li><span class="tk-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3.5H7a2.5 2.5 0 0 0-2.5 2.5v12A2.5 2.5 0 0 0 7 20.5h10a2.5 2.5 0 0 0 2.5-2.5V9z"/><path d="M14 3.5V9h5.5M8.5 15l2 2 4-4"/></svg></span>Договоры с исполнителями</li>
-        <li><span class="tk-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="8.5" r="3.5"/><path d="M5 20c.7-3.6 3.4-5.5 7-5.5s6.3 1.9 7 5.5"/></svg></span>Проверку исполнителей</li>
-        <li><span class="tk-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.6 2.4 3.8 5.2 3.8 8.5s-1.2 6.1-3.8 8.5c-2.6-2.4-3.8-5.2-3.8-8.5s1.2-6.1 3.8-8.5z"/></svg></span>Выплаты в 4 валютах</li>
-        <li><span class="tk-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3.5" width="16" height="17" rx="3"/><path d="M8 9h8M8 13h8M8 17h5"/></svg></span>Акты и закрывающие документы</li>
+    <div class="hv-switch" role="group" aria-label="Вариант первого экрана"><span>Первый экран, вариант</span><button type="button" data-hv="a" aria-pressed="false">A. Условия</button><button type="button" data-hv="b" aria-pressed="false">B. Миссия</button><button type="button" data-hv="c" aria-pressed="true">C. Предприятия</button></div>
+    <div class="hero-copy" data-hv="a">
+      <span class="eyebrow">Для компаний, которые уже платят исполнителям через сервисы</span>
+      <h1 class="h1-main">Условия расчётов с исполнителями <span class="plate">под вашу компанию</span></h1>
+      <p class="h1-sub hv-sub">Подбираем юрлицо, модель и курс под ваши работы и страну.</p>
+      <ul class="trumps" aria-label="Что Kopler даёт вашей компании">
+        <li class="t-rate"><a href="#rates"><span class="tk-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M6 18L18 6"/><circle cx="7.5" cy="7.5" r="2.5"/><circle cx="16.5" cy="16.5" r="2.5"/></svg></span><b>Персональный курс</b><p>Курс для вашей компании. Фиксируется, когда вы создаёте задание</p><span class="t-fx"><i>USD</i>92,40<i>RUB</i><em>ваш курс</em></span></a></li>
+        <li class="t-org"><a href="#model"><span class="tk-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V6.5L12 4l8 2.5V20"/><path d="M9 20v-5h6v5M8 9.5h.01M12 9.5h.01M16 9.5h.01"/></svg></span><b>3 предприятия по направлениям</b><p>Договор с тем, кто специализируется на ваших работах</p><span class="t-dots"><i style="--d:var(--violet)">IT</i><i style="--d:var(--blue)">Digital</i><i style="--d:var(--ok)">Беларусь</i></span></a></li>
+        <li class="t-mod"><a href="#model"><span class="tk-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M3 12h6"/><path d="M9 12c4 0 5-6 12-6M9 12h12M9 12c4 0 5 6 12 6"/></svg></span><b>Модель под вас</b><p>Схему договора и оплаты собираем по стране компании, работам и исполнителям</p></a></li>
+        <li class="t-mgr"><a href="#support"><span class="tk-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="8.5" r="3.5"/><path d="M5 20c.7-3.6 3.4-5.5 7-5.5s6.3 1.9 7 5.5"/></svg></span><b>Персональный менеджер</b><p>Ведёт вашу компанию от подключения до первых выплат</p></a></li>
       </ul>
+      <div class="pvt-row">
+        <a class="pvt" href="#trust"><span class="pvt-s">ПВТ</span><span><b>Резидент Парка высоких технологий Беларуси</b><small>Сертификат</small></span></a>
+        <a class="pvt" href="#trust"><span class="pvt-s">ПВТ</span><span><b>Резидент Парка высоких технологий Кыргызстана</b><small>Сертификат</small></span></a>
+      </div>
+    </div>
+    <div class="hero-copy" data-hv="b">
+      <span class="eyebrow">Миссия Kopler</span>
+      <h1 class="h1-main">Помогаем заказчикам и исполнителям <span class="plate">безопасно заключить договор и провести деньги</span></h1>
+      <p class="h1-sub hv-sub">Работы выполняют и оформляют предприятия-резиденты Парков высоких технологий. Договор, акты и сертификаты можно показать банку, когда он проверяет платёж.</p>
+      <ul class="takes" aria-label="Что можно показать банку">
+        <li><span class="tk-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V6.5L12 4l8 2.5V20"/><path d="M9 20v-5h6v5M8 9.5h.01M12 9.5h.01M16 9.5h.01"/></svg></span>Сертификаты резидента ПВТ</li>
+        <li><span class="tk-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3.5H7a2.5 2.5 0 0 0-2.5 2.5v12A2.5 2.5 0 0 0 7 20.5h10a2.5 2.5 0 0 0 2.5-2.5V9z"/><path d="M14 3.5V9h5.5M8.5 15l2 2 4-4"/></svg></span>Договор с работающим предприятием</li>
+        <li><span class="tk-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 9.5L12 4.5l8.5 5"/><path d="M5.5 10v7M10 10v7M14 10v7M18.5 10v7M3.5 20h17"/></svg></span>Документы для валютного контроля</li>
+        <li><span class="tk-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l7 3v5c0 4.2-2.9 7.7-7 9-4.1-1.3-7-4.8-7-9v-5z"/><path d="M8.8 12l2.2 2.2 4.2-4.4"/></svg></span>Модель проверена юристами</li>
+      </ul>
+      <div class="pvt-row">
+        <a class="pvt" href="#trust"><span class="pvt-s">ПВТ</span><span><b>Резидент Парка высоких технологий Беларуси</b><small>Сертификат</small></span></a>
+        <a class="pvt" href="#trust"><span class="pvt-s">ПВТ</span><span><b>Резидент Парка высоких технологий Кыргызстана</b><small>Сертификат</small></span></a>
+      </div>
+    </div>
+    <div class="hero-copy on" data-hv="c">
+      <h1 class="h1-main">За Kopler стоят <span class="plate">работающие предприятия с сертификатами</span></h1>
+      <p class="h1-sub hv-sub">Резиденты Парков высоких технологий Беларуси и Кыргызстана. Договор, выплаты и документы ведёт предприятие под ваше направление работ.</p>
+      <ul class="trumps" aria-label="Что Kopler даёт вашей компании">
+        <li class="t-rate"><a href="#rates"><span class="tk-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M6 18L18 6"/><circle cx="7.5" cy="7.5" r="2.5"/><circle cx="16.5" cy="16.5" r="2.5"/></svg></span><b>Персональный курс</b><p>Курс для вашей компании. Фиксируется, когда вы создаёте задание</p><span class="t-fx"><i>USD</i>92,40<i>RUB</i><em>ваш курс</em></span></a></li>
+        <li class="t-org"><a href="#model"><span class="tk-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V6.5L12 4l8 2.5V20"/><path d="M9 20v-5h6v5M8 9.5h.01M12 9.5h.01M16 9.5h.01"/></svg></span><b>3 предприятия по направлениям</b><p>Договор с тем, кто специализируется на ваших работах</p><span class="t-dots"><i style="--d:var(--violet)">IT</i><i style="--d:var(--blue)">Digital</i><i style="--d:var(--ok)">Беларусь</i></span></a></li>
+        <li class="t-mod"><a href="#model"><span class="tk-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M3 12h6"/><path d="M9 12c4 0 5-6 12-6M9 12h12M9 12c4 0 5 6 12 6"/></svg></span><b>Модель под вас</b><p>Схему договора и оплаты собираем по стране компании, работам и исполнителям</p></a></li>
+        <li class="t-mgr"><a href="#support"><span class="tk-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="8.5" r="3.5"/><path d="M5 20c.7-3.6 3.4-5.5 7-5.5s6.3 1.9 7 5.5"/></svg></span><b>Персональный менеджер</b><p>Ведёт вашу компанию от подключения до первых выплат</p></a></li>
+      </ul>
+      <div class="pvt-row">
+        <a class="pvt" href="#trust"><span class="pvt-s">ПВТ</span><span><b>Резидент Парка высоких технологий Беларуси</b><small>Сертификат</small></span></a>
+        <a class="pvt" href="#trust"><span class="pvt-s">ПВТ</span><span><b>Резидент Парка высоких технологий Кыргызстана</b><small>Сертификат</small></span></a>
+      </div>
     </div>
 
     <div class="split" id="split" aria-label="Схема: ваша компания, kopler и исполнители">
       <svg class="wires" id="splitSvg" aria-hidden="true"></svg>
-      <div class="card node-co" id="splitSrc"><span class="ico-b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V6.5L12 4l8 2.5V20"/><path d="M9 20v-5h6v5M8 9.5h.01M12 9.5h.01M16 9.5h.01M8 12.5h.01M16 12.5h.01"/></svg></span><div><b>Ваша компания</b><span>1 договор, 1 пополнение</span></div></div>
+      <div class="card node-co" id="splitSrc"><span class="ico-b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V6.5L12 4l8 2.5V20"/><path d="M9 20v-5h6v5M8 9.5h.01M12 9.5h.01M16 9.5h.01M8 12.5h.01M16 12.5h.01"/></svg></span><div><b>Ваша компания</b><span>Пополняет баланс</span></div></div>
       <div class="hub"><div class="hub-core" id="hubCore">kopler</div></div>
       <div class="dsts" id="dsts">
         <div class="dst paid"><span class="av">АК</span><b>Анна</b><span class="cc">RU</span><span class="st"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.2 2.2L9.5 3.6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="plus">+180 000 ₽</span></div>
@@ -1163,49 +1259,97 @@ footer{padding-bottom:72px}
 
 <section class="sec usp-sec" id="usp">
   <div class="wrap">
-    <div class="bento">
-      <a class="bx b1" href="#model">
-        <span class="bx-n">01</span>
-        <h3>Любые исполнители по всему миру</h3>
-        <p>Kopler берёт на себя выплаты и документы с исполнителями из разных стран.</p>
-        <div class="who4"><span>Самозанятые</span><span>ИП</span><span>Физлица</span><span>Фрилансеры за рубежом</span></div>
-        <div class="dots6" aria-hidden="true"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M12 30L30 62L48 22L64 54L82 30L90 70M30 62L64 54M48 22L82 30"/></svg><i style="--x:12%;--y:30%"></i><i style="--x:30%;--y:62%"></i><i style="--x:48%;--y:22%"></i><i style="--x:64%;--y:54%"></i><i style="--x:82%;--y:30%"></i><i style="--x:90%;--y:70%"></i></div>
-      </a>
-      <a class="bx b2" href="#map">
-        <span class="bx-n">02</span>
-        <h3>1 договор вместо множества</h3>
-        <p>Вы заключаете 1 договор с Kopler и пополняете баланс. Договоры с исполнителями Kopler заключает сам.</p>
-        <div class="one-many" aria-hidden="true"><span class="om1">1</span><svg viewBox="0 0 120 44"><path d="M4 22h30M34 22c20 0 22-18 46-18M34 22h46M34 22c20 0 22 18 46 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="86" cy="4" r="3.5"/><circle cx="86" cy="22" r="3.5"/><circle cx="86" cy="40" r="3.5"/></svg></div>
-      </a>
-      <a class="bx b3" href="#rates">
-        <span class="bx-n">03</span>
-        <h3>Выплаты в 4 валютах и фиксация курса</h3>
-        <p>Прозрачный курс, который фиксируется прямо на платформе.</p>
-        <div class="cur4" aria-hidden="true"><span>₽<small>RUB</small></span><span>Br<small>BYN</small></span><span>с<small>KGS</small></span><span>$<small>USD</small></span></div>
-      </a>
-      <a class="bx b4" href="#model">
-        <span class="bx-n">04</span>
-        <h3>Гибкая модель и личный менеджер</h3>
-        <p>3 юрлица под вашу задачу и персональный менеджер у каждой компании.</p>
-        <div class="mgr" aria-hidden="true"><span class="face sm">МК</span><span class="mgr-t">Ваш менеджер<small>на связи в рабочее время</small></span></div>
-      </a>
-      <a class="bx b5" href="#docs">
-        <span class="bx-n">05</span>
-        <h3>Документы без ручной работы</h3>
-        <p>Kopler оформляет документы с исполнителями, акт готов в момент приёмки, всё лежит в кабинете.</p>
-        <div class="mini-docs" aria-hidden="true"><i></i><i></i><i></i></div>
-      </a>
+    <div class="sec-head"><span class="eyebrow">Отличия</span><h2>Чем Kopler отличается <span class="mute br">от платёжных сервисов</span></h2><p class="lead">Платёжный сервис проводит деньги для всех по одной схеме. За Kopler стоят предприятия, которые сами работают в IT и digital и имеют сертификаты.</p></div>
+    <div class="vs" role="table" aria-label="Сравнение">
+      <div class="vs-head" role="row"><span role="columnheader"></span><span role="columnheader">Платёжный сервис</span><span role="columnheader" class="k">Kopler</span></div>
+      <div class="vs-row" role="row"><h3 role="rowheader">Кто стоит за договором</h3><div class="them" role="cell" data-l="Платёжный сервис">Посредник для платежей. Договоры с исполнителями часто идут через цепочку зарубежных компаний</div><div class="us" role="cell" data-l="Kopler">Предприятия-резиденты Парков высоких технологий Беларуси и Кыргызстана с сертификатами</div></div>
+      <div class="vs-row" role="row"><h3 role="rowheader">Юрлицо и схема</h3><div class="them" role="cell" data-l="Платёжный сервис">Одно юрлицо и одна схема для всех клиентов</div><div class="us" role="cell" data-l="Kopler">3 предприятия под разные направления работ. Схему подбираем под страну компании, работы и оплату</div></div>
+      <div class="vs-row" role="row"><h3 role="rowheader">Курс</h3><div class="them" role="cell" data-l="Платёжный сервис">Общий курс сервиса, наценка в курсе не раскрывается</div><div class="us" role="cell" data-l="Kopler">Персональный курс для вашей компании, фиксируется при создании задания</div></div>
+    </div>
+    <div class="vs-cta"><a class="btn btn-primary" href="#model">Подобрать модель под компанию <svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a class="btn btn-ghost" href="#rates">Запросить персональный курс</a></div>
+  </div>
+</section>
+<section class="sec dark on-dark" id="model">
+  <div class="wrap">
+    <div class="claim">
+      <span class="eyebrow" style="margin-bottom:14px">Модель под вас</span>
+      <span class="l1">Мы не подгоняем вас под свою модель</span>
+      <span class="l2">Мы собираем модель под вас</span>
+    </div>
+    <div class="facts2">
+      <div class="f4"><b>3</b><span>юридических лица под разные услуги, налоговые режимы и страны</span></div>
+      <div class="f4"><b>4</b><span>валюты для работы с исполнителями</span></div>
+    </div>
+    <div class="cfg">
+      <div class="qs">
+        <div class="q"><span class="lbl">Где зарегистрирована компания</span><div class="opts" data-q="country"><button aria-pressed="true" data-v="ru">Россия</button><button aria-pressed="false" data-v="by">Беларусь</button><button aria-pressed="false" data-v="kg">Кыргызстан</button><button aria-pressed="false" data-v="other">Другая страна</button></div></div>
+        <div class="q"><span class="lbl">Какие работы</span><div class="opts" data-q="work"><button aria-pressed="true" data-v="it">IT и разработка</button><button aria-pressed="false" data-v="dg">Другие digital-услуги</button><button aria-pressed="false" data-v="both">И то и другое</button></div></div>
+        <div class="q"><span class="lbl">Где исполнители</span><div class="opts" data-q="team"><button aria-pressed="false" data-v="ru">Россия</button><button aria-pressed="true" data-v="cis">СНГ</button><button aria-pressed="false" data-v="world">Весь мир</button></div></div>
+        <div class="q"><span class="lbl">Как оплачиваете задания</span><div class="opts" data-q="pay"><button aria-pressed="true" data-v="full">Полная предоплата</button><button aria-pressed="false" data-v="part">Частичная предоплата</button><button aria-pressed="false" data-v="post">По факту выполнения</button></div></div>
+      </div>
+      <div class="res" id="res" aria-live="polite"></div>
     </div>
   </div>
 </section>
-
-<section class="sec band" id="cases">
+<section class="sec" id="rates">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">Курсы</span><h2>Рыночный курс <span class="mute br">без скрытых наценок</span></h2><p class="lead"><b class="kw">Kopler</b> не зарабатывает на разнице курсов. Курс виден, когда вы создаёте задание, и фиксируется сразу после создания.</p></div>
+    <div class="rates">
+      <div class="card cmp">
+        <div class="board-h"><h3>Курс сейчас</h3><span class="live"><i></i>обновляется</span></div>
+        <div class="curseg" data-cur role="group" aria-label="Валюта"><button type="button" data-c="RUB" aria-pressed="false">RUB</button><button type="button" data-c="BYN" aria-pressed="false">BYN</button><button type="button" data-c="KGS" aria-pressed="false">KGS</button><button type="button" data-c="USD" aria-pressed="true">USD</button></div>
+        <table class="rtable" aria-label="Курсы"><tbody id="rateBody"></tbody></table>
+        <p class="cap" id="rateTime">Обновлено сегодня</p>
+      </div>
+      <div class="card fix">
+        <div class="board-h"><h3>Когда фиксируется курс</h3><span class="tbd">пример интерфейса</span></div>
+        <div class="fix-flow ff4"><div class="ff on"><i>1</i>Выбираете валюту</div><div class="ff on"><i>2</i>Видите курс</div><div class="ff"><i>3</i>Создаёте задание</div><div class="ff"><i>4</i>Курс зафиксирован</div></div>
+        <div class="tf">
+          <div class="tf-h"><span class="lbl">Новое задание</span><b>Макеты лендинга</b></div>
+          <div class="tf-row"><span class="lbl">Валюта задания</span><div class="curseg" data-cur role="group" aria-label="Валюта задания"><button type="button" data-c="RUB" aria-pressed="false">RUB</button><button type="button" data-c="BYN" aria-pressed="false">BYN</button><button type="button" data-c="KGS" aria-pressed="false">KGS</button><button type="button" data-c="USD" aria-pressed="true">USD</button></div></div>
+          <div class="tf-grid">
+            <div class="tf-f"><span class="lbl">Сумма задания</span><b id="tfAmt">1 000 USD</b><small>платит компания</small></div>
+            <div class="tf-f" id="tfRateBox"><span class="lbl">Курс <svg class="lk" width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="7" width="9" height="6.5" rx="1.5"/><path d="M5.5 7V5.5a2.5 2.5 0 0 1 5 0V7"/></svg></span><b id="tfRate">1 USD = 92,40 RUB</b><small id="tfRateNote">меняется вместе с рынком</small></div>
+          </div>
+          <div class="tf-sum"><span>Резерв с баланса</span><b id="tfRub">92 400 RUB</b></div>
+          <div class="tf-act"><button class="btn btn-primary btn-sm hint" id="fixBtn" type="button">Создать задание</button><span class="tf-ok" id="tfOk"></span></div>
+        </div>
+      </div>
+    </div>
+    <div class="indiv">
+      <div class="indiv-t"><span class="lbl">Индивидуальный курс</span><h3>Индивидуальный курс по запросу для вашей компании</h3></div>
+      <div class="indiv-v" aria-hidden="true"><span>USD</span><b id="indivR">92,40</b><span>RUB</span></div>
+      <a class="btn btn-primary" href="#rates" data-soon="Запрос курса уйдёт персональному менеджеру">Запросить курс</a>
+    </div>
+  </div>
+</section>
+<section class="sec band" id="support">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">Помощь</span><h2>Всегда есть кому помочь</h2></div>
+    <div class="sup two">
+      <div class="card">
+        <div class="face">МК</div>
+        <h3>Персональный менеджер</h3>
+        <p>Поможет подключить компанию, пригласить исполнителей и поставить 1-е задание. <span class="tbd">имя — заглушка</span></p>
+        <div class="hours"><span>Пн–Пт, 10:00–18:00 МСК</span><span>Telegram и почта</span></div>
+        <div><a class="btn btn-ghost btn-sm" href="#final">Написать менеджеру</a></div>
+      </div>
+      <div class="card">
+        <div class="ai"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l1.8 4.7 4.7 1.8-4.7 1.8L12 16.5l-1.8-4.7L5.5 10l4.7-1.8z"/><path d="M18.5 15.5l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg></div>
+        <h3>Ассистент <span class="kw">Kopler</span> <span class="tbd">срок запуска</span></h3>
+        <div class="chat" id="chat"></div><div class="chat-in"><span class="ci-t" id="chatIn"><span class="ci-ph">Спросите ассистента</span></span><span class="ci-send" id="chatSend"><svg viewBox="0 0 16 16" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V3M3.5 7.5L8 3l4.5 4.5"/></svg></span></div>
+        <p class="cap">Отвечает круглосуточно, прямо в кабинете</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="sec" id="cases">
   <div class="wrap">
     <div class="sec-head"><h2>Знакомая ситуация?</h2><p class="lead">Выберите свою, и мы покажем, как с ней справляется Kopler.</p></div>
     <div class="cases">
       <div class="case-list" role="tablist" aria-label="Ситуации">
-        <button class="case-btn" role="tab" aria-selected="true" data-case="0"><span class="cn">01</span>Работаете с фрилансерами и опасаетесь вопросов от налоговой</button>
-        <button class="case-btn" role="tab" aria-selected="false" data-case="1"><span class="cn">02</span>Исполнители живут в разных странах, и каждому приходится платить отдельно</button>
+        <button class="case-btn" role="tab" aria-selected="true" data-case="0"><span class="cn">01</span>Банк задаёт вопросы по платежам исполнителям</button>
+        <button class="case-btn" role="tab" aria-selected="false" data-case="1"><span class="cn">02</span>Схема сервиса не подходит под ваши работы или страну</button>
         <button class="case-btn" role="tab" aria-selected="false" data-case="2"><span class="cn">03</span>Бухгалтерия собирает и проверяет пакет документов на каждого исполнителя</button>
         <button class="case-btn" role="tab" aria-selected="false" data-case="3"><span class="cn">04</span>Исполнитель просит оплату на зарубежную карту, и непонятно, как провести платёж</button>
         <button class="case-btn" role="tab" aria-selected="false" data-case="4"><span class="cn">05</span>Каждый месяц десятки выплат и актов, часть исполнителей за рубежом</button>
@@ -1215,7 +1359,6 @@ footer{padding-bottom:72px}
     </div>
   </div>
 </section>
-
 <section class="sec band" id="how">
   <div class="wrap">
     <div class="how">
@@ -1260,10 +1403,9 @@ footer{padding-bottom:72px}
     </div>
   </div>
 </section>
-
 <section class="sec" id="map">
   <div class="wrap">
-    <div class="sec-head"><span class="eyebrow">Модель работы</span><h2>1 договор <span class="mute br">вместо множества документов</span></h2><p class="lead">С исполнителями договоры заключает <b class="kw">Kopler</b>. Деньги идут от вас к исполнителям, акты приходят и вам, и исполнителю.</p></div>
+    <div class="sec-head"><span class="eyebrow">Модель работы</span><h2>Договоры с исполнителями <span class="mute br">заключает Kopler</span></h2><p class="lead">С исполнителями договоры заключает <b class="kw">Kopler</b>. Деньги идут от вас к исполнителям, акты приходят и вам, и исполнителю.</p></div>
     <div class="map-wrap" id="mapWrap" data-mode="kopler">
       <div class="map" id="mapBox" data-mode="kopler">
         <svg class="wires" id="mapSvg" aria-hidden="true"></svg>
@@ -1275,7 +1417,7 @@ footer{padding-bottom:72px}
       </div>
       <div class="card map-side">
         <div class="toggle" role="group" aria-label="Как оформлено"><button type="button" data-mode="self" aria-pressed="false">Напрямую</button><button type="button" data-mode="kopler" aria-pressed="true">Через Kopler</button></div>
-        <div class="cnt"><b data-c="contracts">1</b><span>договор у компании</span></div>
+        <div class="cnt"><b data-c="contracts">0</b><span>договоров с исполнителями у вас</span></div>
         <div class="cnt"><b data-c="payments">1</b><span>платёж в месяц</span></div>
         <div class="cnt"><b data-c="acts">0</b><span>актов вручную</span></div>
         <div class="legend"><span><i class="lm"></i>Деньги</span><span><i class="ld"></i>Акты</span></div>
@@ -1284,8 +1426,7 @@ footer{padding-bottom:72px}
     </div>
   </div>
 </section>
-
-<section class="sec" id="docs">
+<section class="sec band" id="docs">
   <div class="wrap">
     <div class="sec-head"><span class="eyebrow">Документы</span><h2>Документы приходят сами <span class="mute br">без запросов и напоминаний</span></h2></div>
     <div class="docs">
@@ -1304,64 +1445,7 @@ footer{padding-bottom:72px}
     <div class="docs-foot"><span>Акт на каждое задание</span><span>Все акты за месяц 1 выгрузкой</span><span>Пакет для валютного контроля банка</span><span>Акт сверки в любой момент</span></div>
   </div>
 </section>
-
-<section class="sec dark on-dark" id="model">
-  <div class="wrap">
-    <div class="claim">
-      <span class="eyebrow" style="margin-bottom:14px">Модель под вас</span>
-      <span class="l1">Мы не подгоняем вас под свою модель</span>
-      <span class="l2">Мы собираем модель под вас</span>
-    </div>
-    <div class="facts2">
-      <div class="f4"><b>3</b><span>юридических лица под разные услуги, налоговые режимы и страны</span></div>
-      <div class="f4"><b>4</b><span>валюты для работы с исполнителями</span></div>
-    </div>
-    <div class="cfg">
-      <div class="qs">
-        <div class="q"><span class="lbl">Где зарегистрирована компания</span><div class="opts" data-q="country"><button aria-pressed="true" data-v="ru">Россия</button><button aria-pressed="false" data-v="by">Беларусь</button><button aria-pressed="false" data-v="kg">Кыргызстан</button><button aria-pressed="false" data-v="other">Другая страна</button></div></div>
-        <div class="q"><span class="lbl">Какие работы</span><div class="opts" data-q="work"><button aria-pressed="true" data-v="it">IT и разработка</button><button aria-pressed="false" data-v="dg">Другие digital-услуги</button><button aria-pressed="false" data-v="both">И то и другое</button></div></div>
-        <div class="q"><span class="lbl">Где исполнители</span><div class="opts" data-q="team"><button aria-pressed="false" data-v="ru">Россия</button><button aria-pressed="true" data-v="cis">СНГ</button><button aria-pressed="false" data-v="world">Весь мир</button></div></div>
-        <div class="q"><span class="lbl">Как оплачиваете задания</span><div class="opts" data-q="pay"><button aria-pressed="true" data-v="full">Полная предоплата</button><button aria-pressed="false" data-v="part">Частичная предоплата</button><button aria-pressed="false" data-v="post">По факту выполнения</button></div></div>
-      </div>
-      <div class="res" id="res" aria-live="polite"></div>
-    </div>
-  </div>
-</section>
-
-<section class="sec" id="rates">
-  <div class="wrap">
-    <div class="sec-head"><span class="eyebrow">Курсы</span><h2>Рыночный курс <span class="mute br">без скрытых наценок</span></h2><p class="lead"><b class="kw">Kopler</b> не зарабатывает на разнице курсов. Курс виден, когда вы создаёте задание, и фиксируется сразу после создания.</p></div>
-    <div class="rates">
-      <div class="card cmp">
-        <div class="board-h"><h3>Курс сейчас</h3><span class="live"><i></i>обновляется</span></div>
-        <div class="curseg" data-cur role="group" aria-label="Валюта"><button type="button" data-c="RUB" aria-pressed="false">RUB</button><button type="button" data-c="BYN" aria-pressed="false">BYN</button><button type="button" data-c="KGS" aria-pressed="false">KGS</button><button type="button" data-c="USD" aria-pressed="true">USD</button></div>
-        <table class="rtable" aria-label="Курсы"><tbody id="rateBody"></tbody></table>
-        <p class="cap" id="rateTime">Обновлено сегодня</p>
-      </div>
-      <div class="card fix">
-        <div class="board-h"><h3>Когда фиксируется курс</h3><span class="tbd">пример интерфейса</span></div>
-        <div class="fix-flow ff4"><div class="ff on"><i>1</i>Выбираете валюту</div><div class="ff on"><i>2</i>Видите курс</div><div class="ff"><i>3</i>Создаёте задание</div><div class="ff"><i>4</i>Курс зафиксирован</div></div>
-        <div class="tf">
-          <div class="tf-h"><span class="lbl">Новое задание</span><b>Макеты лендинга</b></div>
-          <div class="tf-row"><span class="lbl">Валюта задания</span><div class="curseg" data-cur role="group" aria-label="Валюта задания"><button type="button" data-c="RUB" aria-pressed="false">RUB</button><button type="button" data-c="BYN" aria-pressed="false">BYN</button><button type="button" data-c="KGS" aria-pressed="false">KGS</button><button type="button" data-c="USD" aria-pressed="true">USD</button></div></div>
-          <div class="tf-grid">
-            <div class="tf-f"><span class="lbl">Сумма задания</span><b id="tfAmt">1 000 USD</b><small>платит компания</small></div>
-            <div class="tf-f" id="tfRateBox"><span class="lbl">Курс <svg class="lk" width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="7" width="9" height="6.5" rx="1.5"/><path d="M5.5 7V5.5a2.5 2.5 0 0 1 5 0V7"/></svg></span><b id="tfRate">1 USD = 92,40 RUB</b><small id="tfRateNote">меняется вместе с рынком</small></div>
-          </div>
-          <div class="tf-sum"><span>Резерв с баланса</span><b id="tfRub">92 400 RUB</b></div>
-          <div class="tf-act"><button class="btn btn-primary btn-sm hint" id="fixBtn" type="button">Создать задание</button><span class="tf-ok" id="tfOk"></span></div>
-        </div>
-      </div>
-    </div>
-    <div class="indiv">
-      <div class="indiv-t"><span class="lbl">Индивидуальный курс</span><h3>Индивидуальный курс по запросу для вашей компании</h3></div>
-      <div class="indiv-v" aria-hidden="true"><span>USD</span><b id="indivR">92,40</b><span>RUB</span></div>
-      <a class="btn btn-primary" href="#rates" data-soon="Запрос курса уйдёт персональному менеджеру">Запросить курс</a>
-    </div>
-  </div>
-</section>
-
-<section class="sec band" id="price">
+<section class="sec" id="price">
   <div class="wrap">
     <div class="sec-head"><span class="eyebrow">Тарифы</span><h2>Сколько это стоит <span class="mute br">комиссия не более 7%</span></h2><p class="lead">Комиссия зависит от модели работы. Калькулятор покажет предварительную оценку, финальный тариф закрепляем в ваших индивидуальных условиях.</p></div>
     <div class="price">
@@ -1391,8 +1475,7 @@ footer{padding-bottom:72px}
     </div>
   </div>
 </section>
-
-<section class="sec" id="security">
+<section class="sec band" id="security">
   <div class="wrap">
     <div class="sec-head"><span class="eyebrow">Безопасность</span><h2>Деньги двигаются <span class="mute br">только после проверок</span></h2><p class="lead">Проверки, резерв и права доступа защищают каждый платёж и каждый документ.</p></div>
     <div class="chain">
@@ -1410,28 +1493,6 @@ footer{padding-bottom:72px}
     </div>
   </div>
 </section>
-
-<section class="sec band" id="support">
-  <div class="wrap">
-    <div class="sec-head"><span class="eyebrow">Помощь</span><h2>Всегда есть кому помочь</h2></div>
-    <div class="sup two">
-      <div class="card">
-        <div class="face">МК</div>
-        <h3>Персональный менеджер</h3>
-        <p>Поможет подключить компанию, пригласить исполнителей и поставить 1-е задание. <span class="tbd">имя — заглушка</span></p>
-        <div class="hours"><span>Пн–Пт, 10:00–18:00 МСК</span><span>Telegram и почта</span></div>
-        <div><a class="btn btn-ghost btn-sm" href="#final">Написать менеджеру</a></div>
-      </div>
-      <div class="card">
-        <div class="ai"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l1.8 4.7 4.7 1.8-4.7 1.8L12 16.5l-1.8-4.7L5.5 10l4.7-1.8z"/><path d="M18.5 15.5l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg></div>
-        <h3>Ассистент <span class="kw">Kopler</span> <span class="tbd">срок запуска</span></h3>
-        <div class="chat" id="chat"></div><div class="chat-in"><span class="ci-t" id="chatIn"><span class="ci-ph">Спросите ассистента</span></span><span class="ci-send" id="chatSend"><svg viewBox="0 0 16 16" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V3M3.5 7.5L8 3l4.5 4.5"/></svg></span></div>
-        <p class="cap">Отвечает круглосуточно, прямо в кабинете</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section class="sec" id="trust">
   <div class="wrap">
     <div class="trust">
@@ -1446,18 +1507,16 @@ footer{padding-bottom:72px}
     </div>
   </div>
 </section>
-
 <section class="sec mission" id="mission">
   <div class="wrap">
     <div class="mission-in">
       <span class="eyebrow">Наша миссия</span>
-      <q>Помочь <em class="c">заказчикам</em> и <em class="p">исполнителям</em> найти друг друга в любой точке мира и взять на себя всё, что этому мешает</q>
+      <q>Помогать <em class="c">заказчикам</em> и <em class="p">исполнителям</em> в любой точке мира безопасно заключить договор и провести деньги</q>
     </div>
     <canvas class="net" id="net" aria-hidden="true"></canvas>
     <div class="net-lg"><span><i class="c"></i>Заказчики</span><span><i class="p"></i>Исполнители</span></div>
   </div>
 </section>
-
 <section class="sec band" id="faq">
   <div class="wrap">
     <div class="faq">
@@ -1475,7 +1534,6 @@ footer{padding-bottom:72px}
     </div>
   </div>
 </section>
-
 <section class="sec" id="final">
   <div class="wrap">
     <div class="final on-dark">
@@ -1832,8 +1890,8 @@ footer{padding-bottom:72px}
     card:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="M3 10h18M7 15h3"/></svg>'
   };
   var CASES = [
-    {c:'--blue', t:'--blue-tint', i:IC.doc, h:'Договор с исполнителем заключает Kopler', li:['Компания работает по 1 договору с Kopler','Исполнитель проходит проверку до 1-го задания','Акт на каждое задание']},
-    {c:'--teal', t:'--teal-tint', i:IC.split, h:'1 пополнение, выплаты всем', li:['Пополняете баланс 1 платежом','Исполнители получают деньги в своей валюте','Курс фиксируется при создании задания']},
+    {c:'--blue', t:'--blue-tint', i:IC.doc, h:'Документы, которые можно показать банку', li:['Договор с предприятием-резидентом ПВТ','Сертификаты резидента и акт на каждое задание','Пакет документов для валютного контроля']},
+    {c:'--teal', t:'--teal-tint', i:IC.split, h:'Модель собирается под вашу компанию', li:['3 предприятия под разные направления работ','Схема по стране компании, работам и исполнителям','Подбор модели прямо на сайте']},
     {c:'--amber', t:'--amber-tint', i:IC.pack, h:'1 полный пакет документов', li:['Договор, счёт-задание и акт','Документы для валютного контроля банка','Всё в кабинете и на почте']},
     {c:'--violet', t:'--violet-tint', i:IC.globe, h:'Международную выплату проводит Kopler', li:['Вы платите на баланс в своей валюте','Исполнитель получает деньги на карту или счёт в своей стране','Документы для валютного контроля банка готовы']},
     {c:'--ok', t:'--ok-tint', i:IC.stack, h:'Все выплаты и документы в 1 кабинете', li:['1 пополнение вместо десятков переводов','Акты формируются сами в момент приёмки','Все акты за месяц 1 выгрузкой']}
@@ -1949,9 +2007,26 @@ footer{padding-bottom:72px}
   visible(stage, function(v){ var was = stageOn; stageOn = v; if(v && !was) runStep(curStep); if(!v) clearTimeout(autoT); }, .35);
   (function(){ var s = $$('.ckl span', stage); place(O('oCkl'), C, UP+2); show(O('oCkl')); node('nC','act'); s.forEach(function(x){ x.classList.add('d'); }); })();
 
+  /* ---------- Первый экран: варианты A, B, C ---------- */
+  (function(){
+    var sw = $('.hv-switch'); if(!sw) return;
+    function setHv(v, save){
+      if(!/^[abc]$/.test(v)) v = 'c';
+      $$('.hero-copy[data-hv]').forEach(function(el){ el.classList.toggle('on', el.dataset.hv === v); });
+      $$('button', sw).forEach(function(b){ b.setAttribute('aria-pressed', String(b.dataset.hv === v)); });
+      if(save){ try{ localStorage.setItem('kopler-hero', v); }catch(e){}
+        try{ var u = new URL(location.href); u.searchParams.set('hero', v); history.replaceState(null, '', u.pathname + u.search + u.hash); }catch(e){} }
+      window.dispatchEvent(new Event('resize'));
+    }
+    var q = null; try{ q = new URLSearchParams(location.search).get('hero'); }catch(e){}
+    if(!q){ try{ q = localStorage.getItem('kopler-hero'); }catch(e){} }
+    setHv((q || 'c').toLowerCase(), false);
+    $$('button', sw).forEach(function(b){ b.addEventListener('click', function(){ setHv(b.dataset.hv, true); }); });
+  })();
+
   /* ---------- 1 договор: деньги туда, акты обратно ---------- */
   var mapBox = $('#mapBox'), mapWrap = $('#mapWrap'), mapLines = {trunk:null, br:[]}, mapOn = false, mapT = null;
-  var COUNTS = {self:{contracts:40, payments:40, acts:40}, kopler:{contracts:1, payments:1, acts:0}};
+  var COUNTS = {self:{contracts:40, payments:40, acts:40}, kopler:{contracts:0, payments:1, acts:0}};
   function layoutMap(){
     if(!mapBox || !mapBox.offsetParent) return;
     var svg = $('#mapSvg'); clearPulses(svg); svg.innerHTML = ''; sizeSvg(svg, mapBox);
